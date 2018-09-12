@@ -11,6 +11,62 @@ import UIKit
 class ViewController: UIViewController {
     
     let elements = [
+        ["title": "Texture",
+         "description": "some stuff about diagram",
+         "image": "texture"
+        ],
+        ["title": "Time & Motion",
+         "description": "some stuff about diagram",
+         "image": "time-and-motion"
+        ],
+        ["title": "Figure And Ground",
+         "description": "some stuff about diagram",
+         "image": "figure-and-ground"
+        ],
+        ["title": "Framing",
+         "description": "some stuff about diagram",
+         "image": "framing"
+        ],
+        ["title": "Grid",
+         "description": "some stuff about diagram",
+         "image": "grid"
+        ],
+        ["title": "Hierarchy",
+         "description": "some stuff about diagram",
+         "image": "hierarchy"
+        ],
+        ["title": "Layers",
+         "description": "some stuff about diagram",
+         "image": "layers"
+        ],
+        ["title": "Modularity",
+         "description": "some stuff about diagram",
+         "image": "modularity"
+        ],
+        ["title": "Pattern",
+         "description": "some stuff about diagram",
+         "image": "pattern"
+        ],
+        ["title": "Point, Line & Plane",
+         "description": "some stuff about diagram",
+         "image": "point-line-plane"
+        ],
+        ["title": "Rhythm & Balance",
+         "description": "some stuff about diagram",
+         "image": "rhythm-and-balance"
+        ],
+        ["title": "Rules & Randomness",
+         "description": "some stuff about diagram",
+         "image": "rules-and-randomness"
+        ],
+        ["title": "Scale",
+         "description": "some stuff about diagram",
+         "image": "scale"
+        ],
+        ["title": "Transparency",
+         "description": "some stuff about diagram",
+         "image": "transparency"
+        ],
         ["title": "Color",
          "description": "some stuff about color",
          "image": "color"

@@ -12,67 +12,67 @@ class ViewController: UIViewController {
     
     let elements = [
         ["title": "Texture",
-         "description": "some stuff about diagram",
+         "description": "Texture can add tactility and depth. It can also make a design feel more tangible.",
          "image": "texture"
         ],
         ["title": "Time & Motion",
-         "description": "some stuff about diagram",
+         "description": "Motion can bring life to a design. Blurring, waving or motion lines can help create this effect.",
          "image": "time-and-motion"
         ],
         ["title": "Figure And Ground",
-         "description": "some stuff about diagram",
+         "description": "Negative space can create interesting and engaging designs.",
          "image": "figure-and-ground"
         ],
         ["title": "Framing",
-         "description": "some stuff about diagram",
+         "description": "Framing helps to highlight, crop or decorate elements. Boxes and outlines can call atention to individual elements of a design.",
          "image": "framing"
         ],
         ["title": "Grid",
-         "description": "some stuff about diagram",
+         "description": "The grid helps with aligning and arranging elements. Typically, a grid is implemented through an invisible system of rows and columns.",
          "image": "grid"
         ],
         ["title": "Hierarchy",
-         "description": "some stuff about diagram",
+         "description": "Hierarchy helps a user navigate a design. Attributes like size and position can easily contribute to hierarchy.",
          "image": "hierarchy"
         ],
         ["title": "Layers",
-         "description": "some stuff about diagram",
+         "description": "Layers help create multi-dimensional space. This can be achieved through stacking and opacity effects.",
          "image": "layers"
         ],
         ["title": "Modularity",
-         "description": "some stuff about diagram",
+         "description": "Modularity invloves using shared constraints or characteristics across multiple designs or design elements.",
          "image": "modularity"
         ],
         ["title": "Pattern",
-         "description": "some stuff about diagram",
+         "description": "Patterns invlove repetition and prediction. This can make a design fun and engaging.",
          "image": "pattern"
         ],
         ["title": "Point, Line & Plane",
-         "description": "some stuff about diagram",
+         "description": "These elements can create emphasis and movement by directing the eye and highlighting specific parts of a design.",
          "image": "point-line-plane"
         ],
         ["title": "Rhythm & Balance",
-         "description": "some stuff about diagram",
+         "description": "Rhythm and balance help to create space and hierarchy in a design. The key to achieving good balance is to consider the relationship between elements in a design.",
          "image": "rhythm-and-balance"
         ],
         ["title": "Rules & Randomness",
-         "description": "some stuff about diagram",
+         "description": "Rules make a design ordered and predictable. Randomness can make a design more organic. Used together, rules and randomness can create engaging contrast.",
          "image": "rules-and-randomness"
         ],
         ["title": "Scale",
-         "description": "some stuff about diagram",
+         "description": "Scale can draw attention to and from certain elements. This principle is essential to creating emphasis and hierarchy.",
          "image": "scale"
         ],
         ["title": "Transparency",
-         "description": "some stuff about diagram",
+         "description": "Transparency helps elements interact on a page. This can also be used to create a sense of movement. This is also known as opacity.",
          "image": "transparency"
         ],
         ["title": "Color",
-         "description": "some stuff about color",
+         "description": "A strong color pallete will create a strong design. Color can create moods and atmospheres.",
          "image": "color"
         ],
         ["title": "Diagram",
-         "description": "some stuff about diagram",
+         "description": "Diagrams are a visual representation of data. They can simplify complex concepts.",
          "image": "diagram"
         ],
     ]

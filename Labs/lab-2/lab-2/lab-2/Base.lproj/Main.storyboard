@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina5_5" orientation="portrait">
+    <device id="retina5_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -15,15 +15,15 @@
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="lab_2" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" ambiguous="YES" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="Xqb-EQ-sLu">
-                                <rect key="frame" x="20" y="30" width="374" height="440"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="Xqb-EQ-sLu" userLabel="Main VStack">
+                                <rect key="frame" x="16" y="54" width="343" height="714"/>
                                 <subviews>
-                                    <segmentedControl opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="ayd-Nx-Tuy">
-                                        <rect key="frame" x="0.0" y="0.0" width="374" height="29"/>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="ayd-Nx-Tuy">
+                                        <rect key="frame" x="0.0" y="0.0" width="343" height="29"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="28" id="vhM-fU-BCJ"/>
                                         </constraints>
@@ -32,55 +32,119 @@
                                             <segment title="Paragraph"/>
                                             <segment title="Image"/>
                                         </segments>
+                                        <connections>
+                                            <action selector="onContentChange:" destination="BYZ-38-t0r" eventType="valueChanged" id="BrF-yb-jRb"/>
+                                        </connections>
                                     </segmentedControl>
-                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="kvM-8w-dbF">
-                                        <rect key="frame" x="0.0" y="58" width="374" height="28"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" alignment="bottom" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="kvM-8w-dbF" userLabel="Caps &amp; Color HStack">
+                                        <rect key="frame" x="0.0" y="58" width="343" height="55"/>
                                         <subviews>
-                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZRg-uF-8ba">
-                                                <rect key="frame" x="0.0" y="0.0" width="51" height="28"/>
-                                            </switch>
-                                            <segmentedControl opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="84y-j2-PkN">
-                                                <rect key="frame" x="64" y="0.0" width="310" height="29"/>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="AEO-73-RAs">
+                                                <rect key="frame" x="0.0" y="6.6666666666666714" width="49" height="48.333333333333336"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Caps" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZqL-lf-8XX">
+                                                        <rect key="frame" x="0.0" y="0.0" width="49" height="20.333333333333332"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZRg-uF-8ba">
+                                                        <rect key="frame" x="0.0" y="20.333333333333329" width="51" height="28"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="28" id="FxF-nx-LTl"/>
+                                                        </constraints>
+                                                        <connections>
+                                                            <action selector="onCapsChange:" destination="BYZ-38-t0r" eventType="valueChanged" id="jfV-II-lnf"/>
+                                                        </connections>
+                                                    </switch>
+                                                </subviews>
+                                            </stackView>
+                                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="84y-j2-PkN">
+                                                <rect key="frame" x="64" y="27" width="279" height="29"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="28" id="Yfr-zq-bFC"/>
+                                                </constraints>
                                                 <segments>
                                                     <segment title="Red"/>
                                                     <segment title="Green"/>
                                                     <segment title="Blue"/>
                                                 </segments>
+                                                <connections>
+                                                    <action selector="onColorChange:" destination="BYZ-38-t0r" eventType="valueChanged" id="bSU-hQ-HQb"/>
+                                                </connections>
                                             </segmentedControl>
                                         </subviews>
-                                    </stackView>
-                                    <slider opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="gMs-JL-yBy">
-                                        <rect key="frame" x="-2" y="116" width="378" height="31"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="30" id="UT5-Nk-6Xx"/>
+                                            <constraint firstAttribute="height" constant="55" id="2kG-fT-RgB"/>
                                         </constraints>
-                                    </slider>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="9Bd-6X-R3N">
-                                        <rect key="frame" x="0.0" y="176" width="374" height="264"/>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="f3I-b9-szK">
+                                        <rect key="frame" x="0.0" y="143" width="343" height="54.333333333333343"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Size" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kih-Zj-dmk">
+                                                <rect key="frame" x="0.0" y="0.0" width="343" height="24.333333333333332"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="gMs-JL-yBy">
+                                                <rect key="frame" x="-2" y="24.333333333333343" width="347" height="31"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="30" id="UT5-Nk-6Xx"/>
+                                                </constraints>
+                                                <connections>
+                                                    <action selector="onSizeChange:" destination="BYZ-38-t0r" eventType="valueChanged" id="nkI-nx-3od"/>
+                                                </connections>
+                                            </slider>
+                                        </subviews>
+                                    </stackView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="TzD-Wc-1lM">
+                                        <rect key="frame" x="0.0" y="227.33333333333329" width="343" height="486.66666666666674"/>
+                                    </imageView>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="9Bd-6X-R3N">
+                                        <rect key="frame" x="0.0" y="253.33333333333329" width="343" height="460.66666666666674"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                        <mutableString key="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Idem fecisset Epicurus, si sententiam hanc, quae nunc Hieronymi est, coniunxisset cum Aristippi vetere sententia. Superiores tres erant, quae esse possent, quarum est una sola defensa, eaque vehementer. Duo Reges: constructio interrete. Ita enim se Athenis collocavit, ut sit paene unus ex Atticis, ut id etiam cognomen videatur habiturus. Virtutis, magnitudinis animi, patientiae, fortitudinis fomentis dolor mitigari solet. Nosti, credo, illud: Nemo pius est, qui pietatem-; An vero displicuit ea, quae tributa est animi virtutibus tanta praestantia? Omnibus enim artibus volumus attributam esse eam, quae communis appellatur prudentia, quam omnes, qui cuique artificio praesunt, debent habere. Me ipsum esse dicerem, inquam, nisi mihi viderer habere bene cognitam voluptatem et satis firme conceptam animo atque comprehensam. Aristoteles, Xenocrates, tota illa familia non dabit, quippe qui valitudinem, vires, divitias, gloriam, multa alia bona esse dicant, laudabilia non dicant.
+Solum praeterea formosum, solum liberum, solum civem, stultost; Audax negotium, dicerem impudens, nisi hoc institutum postea translatum ad philosophos nostros esset. Magna laus. Quod enim dissolutum sit, id esse sine sensu, quod autem sine sensu sit, id nihil ad nos pertinere omnino. Haec quo modo conveniant, non sane intellego. Et quidem, Cato, hanc totam copiam iam Lucullo nostro notam esse oportebit; Cenasti in vita numquam bene, cum omnia in ista Consumis squilla atque acupensere cum decimano.
+Cur igitur, inquam, res tam dissimiles eodem nomine appellas? At enim, qua in vita est aliquid mali, ea beata esse non potest. Hic ego: Etsi facit hic quidem, inquam, Piso, ut vides, ea, quae praecipis, tamen mihi grata hortatio tua est. Possumusne ergo in vita summum bonum dicere, cum id ne in cena quidem posse videamur? Aliis esse maiora, illud dubium, ad id, quod summum bonum dicitis, ecquaenam possit fieri accessio. Oculorum, inquit Plato, est in nobis sensus acerrimus, quibus sapientiam non cernimus. Sed quia studebat laudi et dignitati, multum in virtute processerat. Haec non erant eius, qui innumerabilis mundos infinitasque regiones, quarum nulla esset ora, nulla extremitas, mente peragravisset. Quod etsi ingeniis magnis praediti quidam dicendi copiam sine ratione consequuntur, ars tamen est dux certior quam natura. Quae cum ita sint, effectum est nihil esse malum, quod turpe non sit.
+Ex quo illud efficitur, qui bene cenent omnis libenter cenare, qui libenter, non continuo bene. Aliter enim explicari, quod quaeritur, non potest. Verba tu fingas et ea dicas, quae non sentias? Quae cum praeponunt, ut sit aliqua rerum selectio, naturam videntur sequi; Aristoteles, Xenocrates, tota illa familia non dabit, quippe qui valitudinem, vires, divitias, gloriam, multa alia bona esse dicant, laudabilia non dicant. Negat esse eam, inquit, propter se expetendam. Aut unde est hoc contritum vetustate proverbium: quicum in tenebris? Huic verbo omnes, qui ubique sunt, qui Latine sciunt, duas res subiciunt, laetitiam in animo, commotionem suavem iucunditatis in corpore.</mutableString>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="440" id="FfS-Cm-5em"/>
+                                    <constraint firstItem="TzD-Wc-1lM" firstAttribute="bottom" secondItem="Xqb-EQ-sLu" secondAttribute="bottomMargin" id="GWZ-I2-o1a"/>
+                                    <constraint firstItem="TzD-Wc-1lM" firstAttribute="centerX" secondItem="Xqb-EQ-sLu" secondAttribute="centerX" id="S8o-PO-AM7"/>
                                 </constraints>
+                                <variation key="default">
+                                    <mask key="subviews">
+                                        <exclude reference="9Bd-6X-R3N"/>
+                                    </mask>
+                                </variation>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="Xqb-EQ-sLu" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="3bv-a9-ZWu"/>
-                            <constraint firstAttribute="bottomMargin" secondItem="Xqb-EQ-sLu" secondAttribute="bottom" constant="10" id="Det-q2-rKp"/>
-                            <constraint firstItem="Xqb-EQ-sLu" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="10" id="PPs-6a-oew"/>
+                            <constraint firstItem="Xqb-EQ-sLu" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" constant="10" id="PPs-6a-oew"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Xqb-EQ-sLu" secondAttribute="trailing" id="Tfw-lq-5Cl"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Xqb-EQ-sLu" secondAttribute="bottom" constant="10" id="YDC-J6-2vk"/>
                             <constraint firstItem="Xqb-EQ-sLu" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="cAy-AY-r7A"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <outlet property="capsSwitch" destination="ZRg-uF-8ba" id="uBb-vi-HVW"/>
+                        <outlet property="colorControl" destination="84y-j2-PkN" id="Fiz-2Z-z69"/>
+                        <outlet property="contentControl" destination="ayd-Nx-Tuy" id="ZAN-Qi-DAg"/>
+                        <outlet property="sizeSlider" destination="gMs-JL-yBy" id="ahT-cU-hCx"/>
+                        <outlet property="textView" destination="9Bd-6X-R3N" id="W0h-oQ-MfB"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="135.19999999999999" y="133.00492610837438"/>
         </scene>
     </scenes>
 </document>

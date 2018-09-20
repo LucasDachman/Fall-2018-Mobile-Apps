@@ -14,6 +14,10 @@ class ViewController: UIViewController {
     @IBOutlet weak var colorControl: UISegmentedControl!
     @IBOutlet weak var sizeSlider: UISlider!
     @IBOutlet weak var textView: UITextView!
+    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var capsLabel: UILabel!
+    @IBOutlet weak var sizeLabel: UILabel!
+    @IBOutlet weak var segmentedControl: UISegmentedControl!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,19 +27,40 @@ class ViewController: UIViewController {
         
         setContent()
     }
+    
+    func setImageView(_ isImage: Bool) {
+        if isImage {
+            textView.isHidden = true
+            imageView.isHidden = false
+            capsSwitch.isEnabled = false
+            capsLabel.isEnabled = false
+            colorControl.isEnabled = false
+            sizeSlider.isEnabled = false
+            sizeLabel.isEnabled = false
+            segmentedControl.tintColor = UIColor.red
+        } else {
+            textView.isHidden = false
+            imageView.isHidden = true
+            capsSwitch.isEnabled = true
+            capsLabel.isEnabled = true
+            colorControl.isEnabled = true
+            sizeSlider.isEnabled = true
+            sizeLabel.isEnabled = true
+            segmentedControl.tintColor = colorControl.tintColor
+        }
+    }
 
     func setContent() {
         // set content
         switch contentControl.titleForSegment(at: contentControl.selectedSegmentIndex) {
         case "Word":
-            textView.isHidden = false
             textView.text = "Lorem"
+            setImageView(false)
         case "Paragraph":
-            textView.isHidden = false
             textView.text = longLorem
-        // add image option
+            setImageView(false)
         case "Image":
-            textView.isHidden = true
+            setImageView(true)
         default:
             textView.text = textView.text
         }

@@ -98,16 +98,24 @@
                                             </slider>
                                         </subviews>
                                     </stackView>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="9Bd-6X-R3N">
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="NeT-hq-8f2">
                                         <rect key="frame" x="0.0" y="223.33333333333334" width="374" height="472.66666666666663"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <string key="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Idem fecisset Epicurus, si sententiam hanc, quae nunc Hieronymi est, coniunxisset cum Aristippi vetere sententia. Superiores tres erant, quae esse possent, quarum est una sola defensa, eaque vehementer. Duo Reges: constructio interrete. Ita enim se Athenis collocavit, ut sit paene unus ex Atticis, ut id etiam cognomen videatur habiturus. Virtutis, magnitudinis animi, patientiae, fortitudinis fomentis dolor mitigari solet. Nosti, credo, illud: Nemo pius est, qui pietatem-; An vero displicuit ea, quae tributa est animi virtutibus tanta praestantia? Omnibus enim artibus volumus attributam esse eam, quae communis appellatur prudentia, quam omnes, qui cuique artificio praesunt, debent habere. Me ipsum esse dicerem, inquam, nisi mihi viderer habere bene cognitam voluptatem et satis firme conceptam animo atque comprehensam. Aristoteles, Xenocrates, tota illa familia non dabit, quippe qui valitudinem, vires, divitias, gloriam, multa alia bona esse dicant, laudabilia non dicant.
+                                        <subviews>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="steve-jobs" translatesAutoresizingMaskIntoConstraints="NO" id="dLd-dz-Hns">
+                                                <rect key="frame" x="0.0" y="0.0" width="374" height="236.33333333333334"/>
+                                            </imageView>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="9Bd-6X-R3N">
+                                                <rect key="frame" x="0.0" y="236.33333333333331" width="374" height="236.33333333333331"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <string key="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Idem fecisset Epicurus, si sententiam hanc, quae nunc Hieronymi est, coniunxisset cum Aristippi vetere sententia. Superiores tres erant, quae esse possent, quarum est una sola defensa, eaque vehementer. Duo Reges: constructio interrete. Ita enim se Athenis collocavit, ut sit paene unus ex Atticis, ut id etiam cognomen videatur habiturus. Virtutis, magnitudinis animi, patientiae, fortitudinis fomentis dolor mitigari solet. Nosti, credo, illud: Nemo pius est, qui pietatem-; An vero displicuit ea, quae tributa est animi virtutibus tanta praestantia? Omnibus enim artibus volumus attributam esse eam, quae communis appellatur prudentia, quam omnes, qui cuique artificio praesunt, debent habere. Me ipsum esse dicerem, inquam, nisi mihi viderer habere bene cognitam voluptatem et satis firme conceptam animo atque comprehensam. Aristoteles, Xenocrates, tota illa familia non dabit, quippe qui valitudinem, vires, divitias, gloriam, multa alia bona esse dicant, laudabilia non dicant.
 Solum praeterea formosum, solum liberum, solum civem, stultost; Audax negotium, dicerem impudens, nisi hoc institutum postea translatum ad philosophos nostros esset. Magna laus. Quod enim dissolutum sit, id esse sine sensu, quod autem sine sensu sit, id nihil ad nos pertinere omnino. Haec quo modo conveniant, non sane intellego. Et quidem, Cato, hanc totam copiam iam Lucullo nostro notam esse oportebit; Cenasti in vita numquam bene, cum omnia in ista Consumis squilla atque acupensere cum decimano.
 Cur igitur, inquam, res tam dissimiles eodem nomine appellas? At enim, qua in vita est aliquid mali, ea beata esse non potest. Hic ego: Etsi facit hic quidem, inquam, Piso, ut vides, ea, quae praecipis, tamen mihi grata hortatio tua est. Possumusne ergo in vita summum bonum dicere, cum id ne in cena quidem posse videamur? Aliis esse maiora, illud dubium, ad id, quod summum bonum dicitis, ecquaenam possit fieri accessio. Oculorum, inquit Plato, est in nobis sensus acerrimus, quibus sapientiam non cernimus. Sed quia studebat laudi et dignitati, multum in virtute processerat. Haec non erant eius, qui innumerabilis mundos infinitasque regiones, quarum nulla esset ora, nulla extremitas, mente peragravisset. Quod etsi ingeniis magnis praediti quidam dicendi copiam sine ratione consequuntur, ars tamen est dux certior quam natura. Quae cum ita sint, effectum est nihil esse malum, quod turpe non sit.
 Ex quo illud efficitur, qui bene cenent omnis libenter cenare, qui libenter, non continuo bene. Aliter enim explicari, quod quaeritur, non potest. Verba tu fingas et ea dicas, quae non sentias? Quae cum praeponunt, ut sit aliqua rerum selectio, naturam videntur sequi; Aristoteles, Xenocrates, tota illa familia non dabit, quippe qui valitudinem, vires, divitias, gloriam, multa alia bona esse dicant, laudabilia non dicant. Negat esse eam, inquit, propter se expetendam. Aut unde est hoc contritum vetustate proverbium: quicum in tenebris? Huic verbo omnes, qui ubique sunt, qui Latine sciunt, duas res subiciunt, laetitiam in animo, commotionem suavem iucunditatis in corpore.</string>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                    </textView>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                            </textView>
+                                        </subviews>
+                                    </stackView>
                                 </subviews>
                             </stackView>
                         </subviews>
@@ -122,9 +130,13 @@ Ex quo illud efficitur, qui bene cenent omnis libenter cenare, qui libenter, non
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="capsLabel" destination="ZqL-lf-8XX" id="vFp-4y-un6"/>
                         <outlet property="capsSwitch" destination="ZRg-uF-8ba" id="uBb-vi-HVW"/>
                         <outlet property="colorControl" destination="84y-j2-PkN" id="Fiz-2Z-z69"/>
                         <outlet property="contentControl" destination="ayd-Nx-Tuy" id="ZAN-Qi-DAg"/>
+                        <outlet property="imageView" destination="dLd-dz-Hns" id="gRd-fx-Fk4"/>
+                        <outlet property="segmentedControl" destination="ayd-Nx-Tuy" id="2Ha-fl-QTr"/>
+                        <outlet property="sizeLabel" destination="kih-Zj-dmk" id="hrb-wN-Ay0"/>
                         <outlet property="sizeSlider" destination="gMs-JL-yBy" id="ahT-cU-hCx"/>
                         <outlet property="textView" destination="9Bd-6X-R3N" id="W0h-oQ-MfB"/>
                     </connections>
@@ -134,4 +146,7 @@ Ex quo illud efficitur, qui bene cenent omnis libenter cenare, qui libenter, non
             <point key="canvasLocation" x="135.19999999999999" y="133.00492610837438"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="steve-jobs" width="524" height="524"/>
+    </resources>
 </document>

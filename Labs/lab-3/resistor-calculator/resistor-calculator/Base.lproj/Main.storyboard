@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="resistor_calculator" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Zdr-2x-cbV">
+                                <rect key="frame" x="16" y="20" width="343" height="627"/>
+                                <subviews>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="kCt-ZP-acc">
+                                        <rect key="frame" x="0.0" y="0.0" width="343" height="61"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="60" id="7AI-i5-z2e"/>
+                                        </constraints>
+                                        <segments>
+                                            <segment title="Series"/>
+                                            <segment title="Parallel"/>
+                                        </segments>
+                                        <connections>
+                                            <action selector="onSegChange:" destination="BYZ-38-t0r" eventType="valueChanged" id="t6D-qO-rVW"/>
+                                        </connections>
+                                    </segmentedControl>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="8gd-YE-n5t">
+                                        <rect key="frame" x="0.0" y="60" width="343" height="120"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="hEX-La-j1B" userLabel="R1">
+                                                <rect key="frame" x="0.0" y="0.0" width="343" height="60"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Resistor 1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oPA-75-l1p">
+                                                        <rect key="frame" x="0.0" y="20" width="107.5" height="20.5"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0pb-nF-5Jc">
+                                                        <rect key="frame" x="117.5" y="15" width="108" height="30"/>
+                                                        <nil key="textColor"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <textInputTraits key="textInputTraits"/>
+                                                        <connections>
+                                                            <action selector="onValChange:" destination="BYZ-38-t0r" eventType="editingChanged" id="kfj-cn-7VI"/>
+                                                        </connections>
+                                                    </textField>
+                                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="qhT-7Q-E75" userLabel="r1 unit">
+                                                        <rect key="frame" x="235.5" y="16" width="107.5" height="29"/>
+                                                        <segments>
+                                                            <segment title="Ω"/>
+                                                            <segment title="KΩ"/>
+                                                            <segment title="MΩ"/>
+                                                        </segments>
+                                                        <connections>
+                                                            <action selector="onSegChange:" destination="BYZ-38-t0r" eventType="valueChanged" id="xvP-Un-3P0"/>
+                                                        </connections>
+                                                    </segmentedControl>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="YhA-ym-Bak" userLabel="R2">
+                                                <rect key="frame" x="0.0" y="60" width="343" height="60"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Resistor 2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TBf-gX-Tow">
+                                                        <rect key="frame" x="0.0" y="20" width="107.5" height="20.5"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YIv-3z-2sx">
+                                                        <rect key="frame" x="117.5" y="15" width="108" height="30"/>
+                                                        <nil key="textColor"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <textInputTraits key="textInputTraits"/>
+                                                        <connections>
+                                                            <action selector="onValChange2:" destination="BYZ-38-t0r" eventType="editingChanged" id="3l9-Mu-W8h"/>
+                                                        </connections>
+                                                    </textField>
+                                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="aOj-tk-gym" userLabel="r2 unit">
+                                                        <rect key="frame" x="235.5" y="16" width="107.5" height="29"/>
+                                                        <segments>
+                                                            <segment title="Ω"/>
+                                                            <segment title="KΩ"/>
+                                                            <segment title="MΩ"/>
+                                                        </segments>
+                                                        <connections>
+                                                            <action selector="onSegChange:" destination="BYZ-38-t0r" eventType="valueChanged" id="eLN-9p-Dce"/>
+                                                        </connections>
+                                                    </segmentedControl>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="120" id="hWU-wd-h6B"/>
+                                        </constraints>
+                                    </stackView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Result" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" translatesAutoresizingMaskIntoConstraints="NO" id="pKV-PT-cW4">
+                                        <rect key="frame" x="0.0" y="180" width="343" height="447"/>
+                                        <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="92"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="Zdr-2x-cbV" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="7ai-Uk-Kgc"/>
+                            <constraint firstAttribute="bottom" secondItem="Zdr-2x-cbV" secondAttribute="bottom" constant="20" symbolic="YES" id="81S-HQ-WYe"/>
+                            <constraint firstItem="Zdr-2x-cbV" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="XqB-0Z-E3P"/>
+                            <constraint firstItem="Zdr-2x-cbV" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="Zuz-c6-IyA"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                    <connections>
+                        <outlet property="r1Text" destination="0pb-nF-5Jc" id="Ff4-Cz-lsv"/>
+                        <outlet property="r1UnitSeg" destination="qhT-7Q-E75" id="6zH-iy-nHr"/>
+                        <outlet property="r2Text" destination="YIv-3z-2sx" id="Afk-kk-Tsy"/>
+                        <outlet property="r2UnitSeg" destination="aOj-tk-gym" id="dDl-9w-Gdp"/>
+                        <outlet property="resultText" destination="pKV-PT-cW4" id="J4e-ih-LQT"/>
+                        <outlet property="seg" destination="kCt-ZP-acc" id="bjl-9R-6Ug"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="136.80000000000001" y="133.5832083958021"/>
+        </scene>
+    </scenes>
+</document>

@@ -41,11 +41,22 @@ class ViewController: UIViewController {
                 let mult1 = getMultiplier(r1UnitSeg.titleForSegment(at: r1UnitSeg.selectedSegmentIndex))
                 let mult2 = getMultiplier(r2UnitSeg.titleForSegment(at: r2UnitSeg.selectedSegmentIndex))
                 let type = seg.titleForSegment(at: seg.selectedSegmentIndex)
+                var result: Float = 0
                 if type == "Series" {
-                    resultText.text = String((r1 * mult1) + (r2 * mult2)) + "Ω"
+                    result = (r1 * mult1) + (r2 * mult2)
                 }
                 else if type == "Parallel" {
-                    let result = 1 / ((1 / (r1 * mult1)) + (1 / r2 * mult2))
+                    result = 1 / ((1 / (r1 * mult1)) + (1 / r2 * mult2))
+                }
+                if result >= 100000 {
+                    result /= 100000
+                    resultText.text = String(result) + "MΩ"
+                }
+                else if result >= 1000 {
+                    result /= 1000
+                    resultText.text = String(result) + "KΩ"
+                }
+                else {
                     resultText.text = String(result) + "Ω"
                 }
             } else {

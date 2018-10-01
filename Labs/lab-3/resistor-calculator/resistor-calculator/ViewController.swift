@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var seg: UISegmentedControl!
     @IBOutlet weak var r1Text: UITextField!
     @IBOutlet weak var r2Text: UITextField!
@@ -19,8 +19,24 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        r1Text.delegate = self
+        r2Text.delegate = self
         resultText.text = ""
     }
+    
+    override func touchesBegan(_ touches: Set<UITouch>,
+                               with event: UIEvent?) {
+        self.view.endEditing(true)
+        calculate()
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        r1Text.resignFirstResponder()
+        r2Text.resignFirstResponder()
+        calculate()
+        return true
+    }
+    
     @IBAction func onValChange(_ sender: Any) {
         calculate()
     }
@@ -33,8 +49,19 @@ class ViewController: UIViewController {
         calculate()
     }
     
+    func adjustForDecimal(_ field: UITextField) {
+        if let val = field.text {
+            if val.hasPrefix(".") {
+                field.text = "0" + field.text!
+            }
+        }
+    }
+    
     func calculate() {
         
+        
+        adjustForDecimal(r1Text)
+        adjustForDecimal(r2Text)
         // ensure that both text fields have values
         if let r1 = Float(r1Text.text!), let r2 = Float(r2Text.text!) {
             if r1 >= 0 && r2 >= 0 {
@@ -61,8 +88,16 @@ class ViewController: UIViewController {
                 }
             } else {
                 resultText.text = "error"
+                showAlert()
             }
             
+        } else {
+            if let r1 = r1Text.text, let r2 = r2Text.text {
+                if r1.count > 0 && r2.count > 0 {
+                    showAlert()
+                }
+            }
+            resultText.text = ""
         }
         
     }
@@ -81,6 +116,13 @@ class ViewController: UIViewController {
             }
         }
         return 1.0
+    }
+    
+    func showAlert() {
+        let alert=UIAlertController(title: "Warning", message: "Resistor values must be non-negative rational numbers", preferredStyle: UIAlertControllerStyle.alert)
+        let okAction=UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil)
+        alert.addAction(okAction)
+        present(alert, animated: true, completion: nil)
     }
     
     override func didReceiveMemoryWarning() {

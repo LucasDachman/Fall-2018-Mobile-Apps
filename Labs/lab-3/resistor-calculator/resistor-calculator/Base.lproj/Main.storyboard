@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina4_7" orientation="portrait">
+    <device id="retina5_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -16,11 +16,11 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="resistor_calculator" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Zdr-2x-cbV">
-                                <rect key="frame" x="16" y="20" width="343" height="627"/>
+                                <rect key="frame" x="16" y="44" width="343" height="748"/>
                                 <subviews>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="kCt-ZP-acc">
                                         <rect key="frame" x="0.0" y="0.0" width="343" height="61"/>
@@ -42,13 +42,13 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="343" height="60"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Resistor 1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oPA-75-l1p">
-                                                        <rect key="frame" x="0.0" y="20" width="107.5" height="20.5"/>
+                                                        <rect key="frame" x="0.0" y="20" width="107.66666666666667" height="20.333333333333329"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0pb-nF-5Jc">
-                                                        <rect key="frame" x="117.5" y="15" width="108" height="30"/>
+                                                        <rect key="frame" x="117.66666666666666" y="15" width="107.66666666666666" height="30"/>
                                                         <nil key="textColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
@@ -57,7 +57,7 @@
                                                         </connections>
                                                     </textField>
                                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="qhT-7Q-E75" userLabel="r1 unit">
-                                                        <rect key="frame" x="235.5" y="16" width="107.5" height="29"/>
+                                                        <rect key="frame" x="235.33333333333334" y="16" width="107.66666666666666" height="29"/>
                                                         <segments>
                                                             <segment title="Ω"/>
                                                             <segment title="KΩ"/>
@@ -73,13 +73,13 @@
                                                 <rect key="frame" x="0.0" y="60" width="343" height="60"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Resistor 2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TBf-gX-Tow">
-                                                        <rect key="frame" x="0.0" y="20" width="107.5" height="20.5"/>
+                                                        <rect key="frame" x="0.0" y="20" width="107.66666666666667" height="20.333333333333329"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YIv-3z-2sx">
-                                                        <rect key="frame" x="117.5" y="15" width="108" height="30"/>
+                                                        <rect key="frame" x="117.66666666666666" y="15" width="107.66666666666666" height="30"/>
                                                         <nil key="textColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
@@ -88,7 +88,7 @@
                                                         </connections>
                                                     </textField>
                                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="aOj-tk-gym" userLabel="r2 unit">
-                                                        <rect key="frame" x="235.5" y="16" width="107.5" height="29"/>
+                                                        <rect key="frame" x="235.33333333333334" y="16" width="107.66666666666666" height="29"/>
                                                         <segments>
                                                             <segment title="Ω"/>
                                                             <segment title="KΩ"/>
@@ -106,7 +106,7 @@
                                         </constraints>
                                     </stackView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Result" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" translatesAutoresizingMaskIntoConstraints="NO" id="pKV-PT-cW4">
-                                        <rect key="frame" x="0.0" y="180" width="343" height="447"/>
+                                        <rect key="frame" x="0.0" y="180" width="343" height="568"/>
                                         <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="92"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>

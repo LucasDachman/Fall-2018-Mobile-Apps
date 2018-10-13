@@ -8,19 +8,20 @@
 
 import UIKit
 
-class ThemeEditViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITextViewDelegate {
-    @IBOutlet weak var textView: UITextView!
+class ThemeEditViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate {
+    @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var textColorPicker: UIPickerView!
     @IBOutlet weak var textSizePicker: UIPickerView!
     @IBOutlet weak var bgColorPicker: UIPickerView!
     
     var theme: Theme = Theme()
     
-    let colors = [[(color: UIColor.red, name: "red"),
+    let colors = [[(color: UIColor.white, name: "white"),
+                   (color: UIColor.red, name: "red"),
                    (color: UIColor.blue, name: "blue"),
                    (color: UIColor.green, name: "green"),
                    (color: UIColor.black, name: "black")]]
-    let textSizes = [[8, 12, 18, 28, 48]]
+    let textSizes = [[14, 24, 48, 72]]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,9 +33,32 @@ class ThemeEditViewController: UIViewController, UIPickerViewDelegate, UIPickerV
         bgColorPicker.delegate = self
         bgColorPicker.dataSource = self
         
-        // textview stuff
-        // TODO: make keyboard close automatically
-        textView.delegate = self
+        // textfield stuff
+        textField.delegate = self
+        
+        // setup textField
+        textField.placeholder = "type text here..."
+        setupThemeEditor()
+    }
+    
+    func setupThemeEditor() {
+        // set text color picker
+        let textColorRow = colors[0].index(where: {$0.color == theme.textColor})
+        textColorPicker.selectRow(textColorRow!, inComponent: 0, animated: false)
+        // set text size picker
+        let textSizeRow = textSizes[0].index(where: {$0 == theme.textSize})
+        textSizePicker.selectRow(textSizeRow!, inComponent: 0, animated: false)
+        // set background color picker
+        let bgColorRow = colors[0].index(where: {$0.color == theme.bgColor})
+        bgColorPicker.selectRow(bgColorRow!, inComponent: 0, animated: false)
+        // set text
+        textField.text = theme.text
+        
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -67,18 +91,6 @@ class ThemeEditViewController: UIViewController, UIPickerViewDelegate, UIPickerV
         }
         return ""
     }
-    
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        if pickerView == textColorPicker {
-            self.theme.textColor = colors[component][row].color
-        }
-        else if pickerView == bgColorPicker {
-            self.theme.bgColor = colors[component][row].color
-        }
-        else if pickerView == textSizePicker {
-            self.theme.textSize = textSizes[component][row]
-        }
-    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -90,6 +102,10 @@ class ThemeEditViewController: UIViewController, UIPickerViewDelegate, UIPickerV
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
         if segue.identifier == "saveTheme" {
+            theme.text = textField.text
+            self.theme.textColor = colors[0][textColorPicker.selectedRow(inComponent: 0)].color
+            self.theme.textSize = textSizes[0][textSizePicker.selectedRow(inComponent: 0)]
+            self.theme.bgColor = colors[0][bgColorPicker.selectedRow(inComponent: 0)].color
             let mainView = segue.destination as! ViewController
             mainView.theme = self.theme
         }

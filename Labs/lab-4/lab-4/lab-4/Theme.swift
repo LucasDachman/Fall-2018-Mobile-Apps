@@ -9,19 +9,20 @@
 import Foundation
 import UIKit
 
-class Theme {
-    var bgColor: UIColor?
-    var text: String?
-    var textColor: UIColor?
-    var textSize: Int?
+class Theme: Codable {
+    // constants
+    let defaultSize = 14
+    
+    // variables
+    var bgColor: UIColor? = UIColor.white
+    var text: String? = "Some Text Here"
+    var textColor: UIColor? = UIColor.black
+    var textSize: Int? = 14
     
     init() {
-        bgColor = UIColor.white
-        text = "Hello"
-        textColor = UIColor.black
-        textSize = 14
+        
     }
-    
+
     init(backGroundColor: UIColor?, text: String?, textColor: UIColor?, textSize: Int?) {
         self.bgColor = backGroundColor
         self.text = text

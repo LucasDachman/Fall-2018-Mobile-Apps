@@ -14,16 +14,16 @@ class Theme: Codable {
     let defaultSize = 14
     
     // variables
-    var bgColor: UIColor? = UIColor.white
+    var bgColor: String? = "white"
     var text: String? = "Some Text Here"
-    var textColor: UIColor? = UIColor.black
+    var textColor: String? = "black"
     var textSize: Int? = 14
     
     init() {
         
     }
 
-    init(backGroundColor: UIColor?, text: String?, textColor: UIColor?, textSize: Int?) {
+    init(backGroundColor: String?, text: String?, textColor: String?, textSize: Int?) {
         self.bgColor = backGroundColor
         self.text = text
         self.textColor = textColor

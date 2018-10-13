@@ -17,6 +17,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        /*
         let fileURL = dataFileURL(fileName)
         if FileManager.default.fileExists(atPath: (fileURL?.path)!) {
             let url = fileURL!
@@ -27,7 +28,7 @@ class ViewController: UIViewController {
             }
             
         }
-        
+        */
         setupTheme()
     }
 
@@ -41,10 +42,11 @@ class ViewController: UIViewController {
     }
     
     func setupTheme() {
-        mainView.backgroundColor = theme.bgColor
-        textView.backgroundColor = theme.bgColor
+        print(UIColor(named: theme.bgColor!))
+        mainView.backgroundColor = UIColor(named: theme.bgColor!)
+        textView.backgroundColor = UIColor(named: theme.bgColor!)
         textView.text = theme.text
-        textView.textColor = theme.textColor
+        textView.textColor = UIColor(named: theme.textColor!)
         if let size = theme.textSize {
             textView.font = textView.font?.withSize(CGFloat(size))
         } else {

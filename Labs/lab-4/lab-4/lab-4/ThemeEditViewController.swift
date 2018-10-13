@@ -16,11 +16,7 @@ class ThemeEditViewController: UIViewController, UIPickerViewDelegate, UIPickerV
     
     var theme: Theme = Theme()
     
-    let colors = [[(color: UIColor.white, name: "white"),
-                   (color: UIColor.red, name: "red"),
-                   (color: UIColor.blue, name: "blue"),
-                   (color: UIColor.green, name: "green"),
-                   (color: UIColor.black, name: "black")]]
+    let colors = [["white","red","blue","green","black"]]
     let textSizes = [[14, 24, 48, 72]]
     
     override func viewDidLoad() {
@@ -43,13 +39,13 @@ class ThemeEditViewController: UIViewController, UIPickerViewDelegate, UIPickerV
     
     func setupThemeEditor() {
         // set text color picker
-        let textColorRow = colors[0].index(where: {$0.color == theme.textColor})
+        let textColorRow = colors[0].index(where: {$0 == theme.textColor})
         textColorPicker.selectRow(textColorRow!, inComponent: 0, animated: false)
         // set text size picker
         let textSizeRow = textSizes[0].index(where: {$0 == theme.textSize})
         textSizePicker.selectRow(textSizeRow!, inComponent: 0, animated: false)
         // set background color picker
-        let bgColorRow = colors[0].index(where: {$0.color == theme.bgColor})
+        let bgColorRow = colors[0].index(where: {$0 == theme.bgColor})
         bgColorPicker.selectRow(bgColorRow!, inComponent: 0, animated: false)
         // set text
         textField.text = theme.text
@@ -84,7 +80,7 @@ class ThemeEditViewController: UIViewController, UIPickerViewDelegate, UIPickerV
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         if pickerView == textColorPicker || pickerView == bgColorPicker {
-            return colors[component][row].name
+            return colors[component][row]
         }
         else if pickerView == textSizePicker {
             return String(textSizes[component][row])
@@ -103,9 +99,9 @@ class ThemeEditViewController: UIViewController, UIPickerViewDelegate, UIPickerV
         // Pass the selected object to the new view controller.
         if segue.identifier == "saveTheme" {
             theme.text = textField.text
-            self.theme.textColor = colors[0][textColorPicker.selectedRow(inComponent: 0)].color
+            self.theme.textColor = colors[0][textColorPicker.selectedRow(inComponent: 0)]
             self.theme.textSize = textSizes[0][textSizePicker.selectedRow(inComponent: 0)]
-            self.theme.bgColor = colors[0][bgColorPicker.selectedRow(inComponent: 0)].color
+            self.theme.bgColor = colors[0][bgColorPicker.selectedRow(inComponent: 0)]
             let mainView = segue.destination as! ViewController
             mainView.theme = self.theme
         }

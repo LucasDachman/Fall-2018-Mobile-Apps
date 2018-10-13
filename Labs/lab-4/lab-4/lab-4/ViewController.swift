@@ -17,7 +17,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        /*
+        // get persisted data from file
         let fileURL = dataFileURL(fileName)
         if FileManager.default.fileExists(atPath: (fileURL?.path)!) {
             let url = fileURL!
@@ -25,11 +25,30 @@ class ViewController: UIViewController {
                 let data = try Data(contentsOf: url)
                 let decoder = PropertyListDecoder()
                 theme = try decoder.decode(Theme.self, from: data)
+            } catch {
+                print("cant find file")
             }
-            
+        } else {
+            print("cant find file")
         }
-        */
+        
+        // set up data persistence
+        let app = UIApplication.shared
+        NotificationCenter.default.addObserver(self, selector: #selector(self.applicationWillResignActive(_:)), name: Notification.Name.UIApplicationWillResignActive, object: app)
+        
         setupTheme()
+    }
+    
+    @objc func applicationWillResignActive(_ notification: Notification) {
+        let fileURL = dataFileURL(fileName)
+        let encoder = PropertyListEncoder()
+        encoder.outputFormat = .xml
+        do {
+            let plistData = try encoder.encode(theme)
+            try plistData.write(to: fileURL!)
+        } catch {
+            print("write error")
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -42,7 +61,6 @@ class ViewController: UIViewController {
     }
     
     func setupTheme() {
-        print(UIColor(named: theme.bgColor!))
         mainView.backgroundColor = UIColor(named: theme.bgColor!)
         textView.backgroundColor = UIColor(named: theme.bgColor!)
         textView.text = theme.text

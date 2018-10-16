@@ -34,7 +34,7 @@ class ledViewController: UIViewController, UITextFieldDelegate {
             if ledV < 0 || ledCurrent < 0 || vIn < ledV {
                 resultLabel.text = "error"
             } else {
-                resultLabel.text = String(calcLED(sourceVoltage: vIn, ledVoltage: ledV, ledCurrent: ledCurrent)) + "Ω"
+                resultLabel.text = String(format: "%.2f", calcLED(sourceVoltage: vIn, ledVoltage: ledV, ledCurrent: ledCurrent)) + "Ω"
             }
         } else {
             resultLabel.text = "–"

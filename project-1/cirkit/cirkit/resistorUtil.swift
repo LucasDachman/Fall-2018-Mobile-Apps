@@ -55,14 +55,14 @@ class resistorUtil {
                 
                 if result >= 100000 {
                     result /= 100000
-                    resultStr = String(result) + "MΩ"
+                    resultStr = String(format: "%.2f", result) + "MΩ"
                 }
                 else if result >= 1000 {
                     result /= 1000
-                    resultStr = String(result) + "KΩ"
+                    resultStr = String(format: "%.2f", result) + "KΩ"
                 }
                 else {
-                    resultStr = String(result) + "Ω"
+                    resultStr = String(format: "%.2f", result) + "Ω"
                 }
             } else {
                 resultStr = "error"

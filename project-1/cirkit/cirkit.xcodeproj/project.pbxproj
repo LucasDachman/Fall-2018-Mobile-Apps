@@ -14,6 +14,7 @@
 		A0DC4203217557FC00E62EF4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A0DC4202217557FC00E62EF4 /* Assets.xcassets */; };
 		A0DC4206217557FC00E62EF4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A0DC4204217557FC00E62EF4 /* LaunchScreen.storyboard */; };
 		A0DCD25621757AFD00773C7C /* resistorUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0DCD25521757AFD00773C7C /* resistorUtil.swift */; };
+		A0DCD2582175A0F000773C7C /* ledViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0DCD2572175A0F000773C7C /* ledViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		A0DC4205217557FC00E62EF4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A0DC4207217557FC00E62EF4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A0DCD25521757AFD00773C7C /* resistorUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = resistorUtil.swift; sourceTree = "<group>"; };
+		A0DCD2572175A0F000773C7C /* ledViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ledViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +63,7 @@
 				A0DC41F9217557FA00E62EF4 /* AppDelegate.swift */,
 				A0DC41FB217557FB00E62EF4 /* SeriesViewController.swift */,
 				A0DC41FD217557FB00E62EF4 /* ParallelViewController.swift */,
+				A0DCD2572175A0F000773C7C /* ledViewController.swift */,
 				A0DC41FF217557FB00E62EF4 /* Main.storyboard */,
 				A0DCD25521757AFD00773C7C /* resistorUtil.swift */,
 				A0DC4202217557FC00E62EF4 /* Assets.xcassets */,
@@ -144,6 +147,7 @@
 				A0DC41FE217557FB00E62EF4 /* ParallelViewController.swift in Sources */,
 				A0DC41FA217557FA00E62EF4 /* AppDelegate.swift in Sources */,
 				A0DCD25621757AFD00773C7C /* resistorUtil.swift in Sources */,
+				A0DCD2582175A0F000773C7C /* ledViewController.swift in Sources */,
 				A0DC41FC217557FB00E62EF4 /* SeriesViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

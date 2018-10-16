@@ -28,7 +28,11 @@ class SeriesViewController: UIViewController, UITextFieldDelegate {
     }
     
     func calculate() {
-        
+        resultLabel.text = resistorUtil.calculate(r1Field: r1Field, r2Field: r2Field, r1Seg: r1Seg, r2Seg: r2Seg, type: "Series")
+    }
+    
+    /*
+    func calculate() {
         
         adjustForDecimal(r1Field)
         adjustForDecimal(r2Field)
@@ -58,31 +62,8 @@ class SeriesViewController: UIViewController, UITextFieldDelegate {
         }
         
     }
+ */
     
-    func adjustForDecimal(_ field: UITextField) {
-        if let val = field.text {
-            if val.hasPrefix(".") {
-                field.text = "0" + field.text!
-            }
-        }
-    }
-    
-    func getMultiplier(_ text: String?) -> Float {
-        if let option = text {
-            switch option {
-            case "Ω":
-                return 1
-            case "KΩ":
-                return 1000
-            case "MΩ":
-                return 100000
-            default:
-                return 1
-            }
-        }
-        return 1.0
-    }
-
     @IBAction func editingChanged(_ sender: Any) {
         calculate()
     }

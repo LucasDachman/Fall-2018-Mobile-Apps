@@ -140,7 +140,7 @@
             </objects>
             <point key="canvasLocation" x="749.60000000000002" y="-320.68965517241384"/>
         </scene>
-        <!--Item-->
+        <!--LEDs-->
         <scene sceneID="nOd-8w-zhY">
             <objects>
                 <viewController id="QZg-fu-uoP" customClass="ledViewController" customModule="cirkit" customModuleProvider="target" sceneMemberID="viewController">
@@ -262,7 +262,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="x8L-ve-chh"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="BbZ-Fp-Zgf"/>
+                    <tabBarItem key="tabBarItem" title="LEDs" image="led-icon-1" id="BbZ-Fp-Zgf"/>
                     <connections>
                         <outlet property="ledCurrentField" destination="Epc-GR-DW6" id="E1a-RO-4n0"/>
                         <outlet property="ledVField" destination="h0H-1M-7hh" id="yTB-fV-qRc"/>
@@ -417,6 +417,7 @@
     </scenes>
     <resources>
         <image name="led-circuit" width="74" height="469"/>
+        <image name="led-icon-1" width="26" height="26"/>
         <image name="parallel-resistors" width="359" height="244"/>
         <image name="parallel-tab-icon" width="37" height="24"/>
         <image name="resistor" width="67" height="393"/>

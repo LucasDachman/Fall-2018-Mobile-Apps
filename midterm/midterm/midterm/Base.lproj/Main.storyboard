@@ -57,13 +57,22 @@
                                         <rect key="frame" x="0.0" y="238" width="343" height="116.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Workouts/Week" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iRc-cr-PhS">
-                                                <rect key="frame" x="0.0" y="48" width="171.5" height="20.5"/>
+                                                <rect key="frame" x="0.0" y="48" width="114.5" height="20.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="08H-Lm-8oq" userLabel="Workouts/week label">
+                                                <rect key="frame" x="114.5" y="48" width="114" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="eKZ-h9-baS" userLabel="perWeekSlider">
-                                                <rect key="frame" x="169.5" y="43" width="175.5" height="31"/>
+                                                <rect key="frame" x="226.5" y="43" width="118.5" height="31"/>
+                                                <connections>
+                                                    <action selector="sliderChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="Ibm-E6-fVQ"/>
+                                                </connections>
                                             </slider>
                                         </subviews>
                                     </stackView>
@@ -101,6 +110,7 @@
                     <connections>
                         <outlet property="caloriesLabel" destination="7UZ-8z-PEg" id="b56-SO-DAy"/>
                         <outlet property="milesLabel" destination="k9p-Ep-rXq" id="ySC-DX-SOs"/>
+                        <outlet property="perWeekLabel" destination="08H-Lm-8oq" id="Yh9-2N-Rez"/>
                         <outlet property="perWeekSlider" destination="eKZ-h9-baS" id="ctZ-u9-pe3"/>
                         <outlet property="timeField" destination="w9v-bi-jb4" id="b4u-4k-tgO"/>
                         <outlet property="weekSwitch" destination="9us-5O-Tua" id="z6w-jn-n2u"/>

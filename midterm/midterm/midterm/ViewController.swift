@@ -12,15 +12,25 @@ class ViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var timeField: UITextField!
     @IBOutlet weak var weekSwitch: UISwitch!
     @IBOutlet weak var perWeekSlider: UISlider!
+    @IBOutlet weak var perWeekLabel: UILabel!
     @IBOutlet weak var milesLabel: UILabel!
     @IBOutlet weak var caloriesLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         timeField.delegate = self
+        perWeekSlider.minimumValue = 1
+        perWeekSlider.maximumValue = 14
+        perWeekSlider.value = 5
+        sliderChanged(perWeekSlider)
         calculate()
     }
 
+    @IBAction func sliderChanged(_ sender: UISlider) {
+        let value = Int(perWeekSlider.value)
+        sender.setValue(Float(value), animated: true)
+        perWeekLabel.text = String(value)
+    }
     @IBAction func onWorkoutTouched(_ sender: UIButton) {
         calculate()
     }
@@ -31,12 +41,17 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 showAlert()
                 return
             }
+            // get workouts per week
+            let perWeek:Float = perWeekSlider.value
+            // get weekly multiplier
+            let mult:Float = weekSwitch.isOn ? perWeek : 1
+            
             // calculate miles
-            let hours = (minutes / 60)
-            milesLabel.text = String(hours * 6) + " miles"
+            let hours = (minutes / 60) * mult
+            milesLabel.text = String(format: "%.2f", hours * 6) + " miles"
             
             //calculate calories
-            caloriesLabel.text = String(hours * 600) + " calories burned"
+            caloriesLabel.text = String(format: "%.2f", hours * 600) + " calories burned"
             
         } else {
             milesLabel.text = "–"

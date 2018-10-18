@@ -15,6 +15,11 @@ class ViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var perWeekLabel: UILabel!
     @IBOutlet weak var milesLabel: UILabel!
     @IBOutlet weak var caloriesLabel: UILabel!
+    @IBOutlet weak var typeSeg: UISegmentedControl!
+    @IBOutlet weak var imageView: UIImageView!
+    
+    var milesMult: Float = 1;
+    var caloriesMult: Float = 1;
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,6 +28,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
         perWeekSlider.maximumValue = 14
         perWeekSlider.value = 5
         sliderChanged(perWeekSlider)
+        typeSeg.selectedSegmentIndex = 0
+        segChanged(typeSeg)
         calculate()
     }
 
@@ -30,6 +37,33 @@ class ViewController: UIViewController, UITextFieldDelegate {
         let value = Int(perWeekSlider.value)
         sender.setValue(Float(value), animated: true)
         perWeekLabel.text = String(value)
+        calculate()
+    }
+
+    @IBAction func switchChanged(_ sender: UISwitch) {
+        calculate()
+    }
+    
+    @IBAction func segChanged(_ sender: Any) {
+        switch typeSeg.selectedSegmentIndex {
+        case 0:
+            imageView.image = UIImage(named: "run")
+            milesMult = 6
+            caloriesMult = 600
+        case 1:
+            imageView.image = UIImage(named: "swim")
+            milesMult = 2
+            caloriesMult = 420
+        case 2:
+            imageView.image = UIImage(named: "bike")
+            milesMult = 15
+            caloriesMult = 510
+        default:
+            imageView.image = nil
+            milesMult = 0
+            caloriesMult = 0
+        }
+        calculate()
     }
     @IBAction func onWorkoutTouched(_ sender: UIButton) {
         calculate()
@@ -41,17 +75,18 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 showAlert()
                 return
             }
+            
             // get workouts per week
             let perWeek:Float = perWeekSlider.value
             // get weekly multiplier
-            let mult:Float = weekSwitch.isOn ? perWeek : 1
+            let timeMult:Float = weekSwitch.isOn ? perWeek : 1
             
             // calculate miles
-            let hours = (minutes / 60) * mult
-            milesLabel.text = String(format: "%.2f", hours * 6) + " miles"
+            let hours = (minutes / 60) * timeMult
+            milesLabel.text = String(format: "%.2f", hours * milesMult) + " miles"
             
             //calculate calories
-            caloriesLabel.text = String(format: "%.2f", hours * 600) + " calories burned"
+            caloriesLabel.text = String(format: "%.2f", hours * caloriesMult) + " calories burned"
             
         } else {
             milesLabel.text = "–"
@@ -72,10 +107,12 @@ class ViewController: UIViewController, UITextFieldDelegate {
     override func touchesBegan(_ touches: Set<UITouch>,
                                with event: UIEvent?) {
         self.view.endEditing(true)
+        calculate()
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         timeField.resignFirstResponder()
+        calculate()
         return true
     }
     

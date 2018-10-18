@@ -17,6 +17,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var caloriesLabel: UILabel!
     @IBOutlet weak var typeSeg: UISegmentedControl!
     @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var nameLabel: UILabel!
     
     var milesMult: Float = 1;
     var caloriesMult: Float = 1;
@@ -24,6 +25,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         timeField.delegate = self
+        nameLabel.text = ""
         perWeekSlider.minimumValue = 1
         perWeekSlider.maximumValue = 14
         perWeekSlider.value = 5
@@ -115,6 +117,10 @@ class ViewController: UIViewController, UITextFieldDelegate {
         calculate()
         return true
     }
+    
+    @IBAction func unwindSegue(_ segue: UIStoryboardSegue) {
+    }
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

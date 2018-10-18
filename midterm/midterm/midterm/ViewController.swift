@@ -27,6 +27,10 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     func calculate() {
         if let minutes = Float(timeField.text!) {
+            if minutes < 30 {
+                showAlert()
+                return
+            }
             // calculate miles
             let hours = (minutes / 60)
             milesLabel.text = String(hours * 6) + " miles"
@@ -38,6 +42,16 @@ class ViewController: UIViewController, UITextFieldDelegate {
             milesLabel.text = "–"
             caloriesLabel.text = "–"
         }
+    }
+    
+    func showAlert() {
+        let alert = UIAlertController(title: "warning", message: "You need to work out more!", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: nil))
+        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action) in
+            self.timeField.text = "30"
+            self.calculate()
+        }))
+        self.present(alert, animated: true, completion: nil)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>,

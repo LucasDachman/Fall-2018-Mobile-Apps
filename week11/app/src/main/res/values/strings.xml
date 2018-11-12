@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">week-11</string>
+    <string name="heading">Find Your Sport</string>
+    <string name="sport_button">Find</string>
+    <string name="toggle_on">inside</string>
+    <string name="toggle_off">outside</string>
+
+    <string-array name="exercise">
+        <item>cardio</item>
+        <item>strength</item>
+        <item>flexibility</item>
+    </string-array>
+
+    <string name="radio1">$</string>
+    <string name="radio2">$$</string>
+    <string name="radio3">$$$</string>
+</resources>

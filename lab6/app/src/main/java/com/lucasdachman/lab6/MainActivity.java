@@ -1,9 +1,12 @@
 package com.lucasdachman.lab6;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.graphics.drawable.Drawable;
 import android.media.Image;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -22,21 +25,25 @@ public class MainActivity extends Activity implements SeekBar.OnSeekBarChangeLis
     ImageView imageView;
     Button prevButton;
     Button nextButton;
+    SeekBar seekBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setUpPages();;
+        setUpPages();
         setContentView(R.layout.activity_main);
-
 
         titleTextView = findViewById(R.id.titleTextView);
         pTextView = findViewById(R.id.pTextView);
         imageView = findViewById(R.id.imageView);
         prevButton = findViewById(R.id.prevButton);
         nextButton = findViewById(R.id.nextButton);
-        ((SeekBar)findViewById(R.id.seekBar)).setOnSeekBarChangeListener(this);
+        seekBar = findViewById(R.id.seekBar);
+
+        seekBar.setOnSeekBarChangeListener(this);
+        seekBar.setMax(NUM_PAGES - 1);
         setPage(0);
+        setButtons();
     }
 
 
@@ -45,7 +52,6 @@ public class MainActivity extends Activity implements SeekBar.OnSeekBarChangeLis
     public void navPrev(View view) {
         setPage(--currentPage);
         setButtons();
-
     }
 
     public void navNext(View view) {
@@ -55,8 +61,13 @@ public class MainActivity extends Activity implements SeekBar.OnSeekBarChangeLis
 
     /** Helper functions **/
 
+    public void makeToast() {
+
+    }
+
     public void setButtons() {
-         if (currentPage == 0) {
+        seekBar.setProgress(currentPage);
+        if (currentPage == 0) {
            prevButton.setEnabled(false);
         }
         else {
@@ -103,7 +114,11 @@ public class MainActivity extends Activity implements SeekBar.OnSeekBarChangeLis
 
     @Override
     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-
+        if (fromUser) {
+            currentPage = progress;
+            setPage(currentPage);
+            setButtons();
+        }
     }
 
     @Override

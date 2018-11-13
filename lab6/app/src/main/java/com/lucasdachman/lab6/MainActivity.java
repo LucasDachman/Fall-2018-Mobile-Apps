@@ -6,12 +6,14 @@ import android.graphics.drawable.Drawable;
 import android.media.Image;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
@@ -87,6 +89,12 @@ public class MainActivity extends Activity implements SeekBar.OnSeekBarChangeLis
         pTextView.setText(pages[index].description);
         int id = getResources().getIdentifier(pages[index].imageName, "drawable", getApplicationContext().getPackageName());
         imageView.setImageResource(id);
+
+        if (index == NUM_PAGES - 1) {
+            Toast toast = Toast.makeText(getApplicationContext(), "Last Page!", Toast.LENGTH_SHORT);
+            toast.setGravity(Gravity.BOTTOM, 0, 250);
+            toast.show();
+        }
     }
 
     public void setUpPages() {

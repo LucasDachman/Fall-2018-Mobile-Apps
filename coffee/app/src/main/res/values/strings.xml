@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">coffee</string>
+    <string name="coffee_shop_finder">Coffee Shop Finder</string>
+    <string-array name="crowds">
+        <item>popular</item>
+        <item>cycling</item>
+        <item>hipster</item>
+        <item>tea</item>
+        <item>hippie</item>
+    </string-array>
+</resources>

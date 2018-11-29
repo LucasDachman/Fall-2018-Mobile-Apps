@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">lab7</string>
     <string name="title">Choose A Color</string>
+    <string name="goBtnTxt">Go</string>
+    <string name="youPickedText">You Picked&#160;</string>
+    <string name="find_out_more">Find Out More</string>
 </resources>

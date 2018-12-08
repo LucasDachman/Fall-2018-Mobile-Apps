@@ -132,17 +132,17 @@ public class ResistorColor {
 
     private static class mColors {
         public static int Black = Color.BLACK;
-        public static int Brown = 0x7D4302 ;
+        public static int Brown = 0xFF7D4302;
         public static int Red = Color.RED;
-        public static int Orange = 0xff8c1a;
+        public static int Orange = 0xFFff8c1a;
         public static int Yellow = Color.YELLOW;
         public static int Green = Color.GREEN;
         public static int Blue = Color.BLUE;
-        public static int Violet = 0x660066;
-        public static int Gray = 0x4d4d4d;
+        public static int Violet = 0xFF660066;
+        public static int Gray = 0xFF4d4d4d;
         public static int White = Color.WHITE;
-        public static int Gold = 0xFFD700;
-        public static int Silver = 0xC1C1C1;
+        public static int Gold = 0xFFFFD700;
+        public static int Silver = 0xFFC1C1C1;
     }
 
 }

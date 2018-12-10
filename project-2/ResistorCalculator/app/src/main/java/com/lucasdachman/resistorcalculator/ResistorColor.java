@@ -79,8 +79,8 @@ public class ResistorColor {
                 add(new ResistorColor(mColors.Orange, 0.03, "±3% Orange"));
                 add(new ResistorColor(mColors.Yellow, 0.04, "±4% Yellow"));
                 add(new ResistorColor(mColors.Green, 0.005, "±0.5% Green"));
-                add(new ResistorColor(mColors.Blue, 0.025, "±0.25% Blue"));
-                add(new ResistorColor(mColors.Violet, 0.010, "±0.10% Violet"));
+                add(new ResistorColor(mColors.Blue, 0.0025, "±0.25% Blue"));
+                add(new ResistorColor(mColors.Violet, 0.001, "±0.10% Violet"));
                 add(new ResistorColor(mColors.Gray, 0.0005, "±0.05% Gray"));
                 add(new ResistorColor(mColors.Gold, 0.05, "±5%"));
                 add(new ResistorColor(mColors.Silver, 0.10, "±10%"));

@@ -4,20 +4,22 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.constraint.ConstraintSet;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.FrameLayout;
 import android.widget.Spinner;
 
 public class FourStripFragment extends Fragment {
     int d1, d2;
     double multiplier, tolerance;
     ResultFragment resultFragment;
-    FragmentManager fragmentManager;
 
 
     public FourStripFragment() {
@@ -35,20 +37,19 @@ public class FourStripFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         //resultFragment = (ResultFragment) getFragmentManager().findFragmentById(R.id.result_fragment_4);
+        Log.i("AH", getChildFragmentManager().getFragments().toString());
         resultFragment = (ResultFragment) getChildFragmentManager().getFragments().get(0);
         setSpinnerAdapters();
     }
 
     private void setResults() {
         if (resultFragment != null) {
-            Log.i("AHHH", "res frag not null");
             double resistance = ((d1 * 10) + d2) * multiplier;
             double min = resistance - (resistance * tolerance);
             double max = resistance + (resistance * tolerance);
             resultFragment.setFields(resistance, tolerance, min, max);
             return;
         }
-        Log.i("AHHH", "res frag is null");
 
     }
 

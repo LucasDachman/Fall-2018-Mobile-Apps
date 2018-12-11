@@ -11,11 +11,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Spinner;
+import android.widget.TextView;
+
+import java.util.Locale;
 
 public class FiveStripFragment extends Fragment {
     int d1, d2, d3;
     double multiplier, tolerance;
-    ResultFragment resultFragment;
+    TextView resistanceField, toleranceField, minField, maxField;
 
     public FiveStripFragment() {
         // Required empty public constructor
@@ -31,20 +34,28 @@ public class FiveStripFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        Log.i("AH", getChildFragmentManager().getFragments().toString());
-        resultFragment = (ResultFragment) getChildFragmentManager().getFragments().get(0);
         setSpinnerAdapters();
+
+        resistanceField = getView().findViewById(R.id.resistance_result_5);
+        toleranceField = getView().findViewById(R.id.tolerance_result_5);
+        minField = getView().findViewById(R.id.min_result_5);
+        maxField = getView().findViewById(R.id.max_result_5);
     }
 
     private void setResults() {
-        if (resultFragment != null) {
-            double resistance = ((d1 * 100) + (d2 * 10) + d3) * multiplier;
-            double min = resistance - (resistance * tolerance);
-            double max = resistance + (resistance * tolerance);
-            resultFragment.setFields(resistance, tolerance, min, max);
-            return;
-        }
+        double resistance = ((d1 * 100) + (d2 * 10) + d3) * multiplier;
+        double min = resistance - (resistance * tolerance);
+        double max = resistance + (resistance * tolerance);
+        setFields(resistance, tolerance, min, max);
 
+    }
+
+    public void setFields(double resistance, double tolerance, double min, double max) {
+        Locale locale = getResources().getConfiguration().locale;
+        resistanceField.setText(String.format(locale, "%.2fΩ", resistance));
+        toleranceField.setText(String.format(locale, "± %.2f%%", tolerance * 100));
+        minField.setText(String.format(locale, "%.2fΩ", min));
+        maxField.setText(String.format(locale, "%.2fΩ", max));
     }
 
     private void setSpinnerAdapters() {

@@ -6,19 +6,94 @@
     android:layout_height="match_parent"
     tools:context=".SixStripFragment">
 
+    <Spinner
+        android:id="@+id/spinner6_1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toStartOf="@+id/spinner6_2"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Spinner
+        android:id="@+id/spinner6_2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        app:layout_constraintBottom_toBottomOf="@+id/spinner6_1"
+        app:layout_constraintEnd_toStartOf="@+id/spinner6_3"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/spinner6_1"
+        app:layout_constraintTop_toTopOf="@+id/spinner6_1" />
+
+    <Spinner
+        android:id="@+id/spinner6_3"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        app:layout_constraintBottom_toBottomOf="@+id/spinner6_2"
+        app:layout_constraintEnd_toStartOf="@+id/spinner6_4"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/spinner6_2"
+        app:layout_constraintTop_toTopOf="@+id/spinner6_2" />
+
+    <Spinner
+        android:id="@+id/spinner6_4"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        app:layout_constraintBottom_toBottomOf="@+id/spinner6_3"
+        app:layout_constraintEnd_toStartOf="@+id/spinner6_5"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/spinner6_3"
+        app:layout_constraintTop_toTopOf="@+id/spinner6_3" />
+
+    <Spinner
+        android:id="@+id/spinner6_5"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        app:layout_constraintBottom_toBottomOf="@+id/spinner6_4"
+        app:layout_constraintEnd_toStartOf="@+id/spinner6_6"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/spinner6_4"
+        app:layout_constraintTop_toTopOf="@+id/spinner6_4" />
+
+
+    <Spinner
+        android:id="@+id/spinner6_6"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/spinner6_5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/spinner6_5"
+        app:layout_constraintTop_toTopOf="@+id/spinner6_5" />
+
+
     <!--Results-->
     <TextView
         android:id="@+id/textView9"
         style="@style/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:text="@string/resistance"
         app:layout_constraintBottom_toTopOf="@+id/resistance_result_6"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_chainStyle="spread" />
+        app:layout_constraintTop_toBottomOf="@+id/spinner6_1" />
 
     <TextView
         android:id="@+id/resistance_result_6"
@@ -98,10 +173,35 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="5.01kΩ"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/textView17"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView16" />
+
+    <TextView
+        android:id="@+id/textView17"
+        style="@style/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tempco"
+        app:layout_constraintBottom_toTopOf="@+id/temp_result_6"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/max_result_6" />
+
+    <TextView
+        android:id="@+id/temp_result_6"
+        style="@style/result"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="4.99kΩ"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView17" />
+
 
 </android.support.constraint.ConstraintLayout>

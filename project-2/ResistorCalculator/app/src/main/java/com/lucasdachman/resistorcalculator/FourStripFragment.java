@@ -24,6 +24,11 @@ public class FourStripFragment extends Fragment {
     double multiplier, tolerance;
     TextView resistanceField, toleranceField, minField, maxField;
 
+    String D1_KEY = "D1";
+    String D2_KEY = "D2";
+    String MULT_KEY = "MULT";
+    String TOL_KEY = "TOL";
+
 
     public FourStripFragment() {
         // Required empty public constructor
@@ -33,6 +38,12 @@ public class FourStripFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        if (savedInstanceState != null) {
+            d1 = savedInstanceState.getInt(D1_KEY);
+            d2 = savedInstanceState.getInt(D2_KEY);
+            multiplier = savedInstanceState.getDouble(MULT_KEY);
+            tolerance = savedInstanceState.getDouble(TOL_KEY);
+        }
         return inflater.inflate(R.layout.fragment_four_strip, container, false);
     }
 
@@ -45,6 +56,7 @@ public class FourStripFragment extends Fragment {
         toleranceField = getView().findViewById(R.id.tolerance_result_4);
         minField = getView().findViewById(R.id.min_result_4);
         maxField = getView().findViewById(R.id.max_result_4);
+        setResults();
     }
 
     private void setResults() {
@@ -142,5 +154,17 @@ public class FourStripFragment extends Fragment {
         }
     }
 
+
+    // invoked when the activity may be temporarily destroyed, save the instance state here
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        outState.putInt(D1_KEY, d1);
+        outState.putInt(D2_KEY, d2);
+        outState.putDouble(MULT_KEY, multiplier);
+        outState.putDouble(TOL_KEY, tolerance);
+
+        // call superclass to save any view hierarchy
+        super.onSaveInstanceState(outState);
+    }
 
 }

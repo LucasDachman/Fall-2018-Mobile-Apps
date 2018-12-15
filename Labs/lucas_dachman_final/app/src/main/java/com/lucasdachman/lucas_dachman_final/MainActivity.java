@@ -25,6 +25,8 @@ public class MainActivity extends AppCompatActivity {
     CheckBox pepCheck, sausageCheck, mushCheck, onionCheck;
     TextView resultTextView;
 
+    Pizza pizza;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
         ArrayList<String> toppingsList = new ArrayList<>();
 
         name = pizzaNameView.getText().toString();
-        if (name == null || name.length() == 0) {
+        if (name.length() == 0) {
             makeToast();
             return;
         }
@@ -65,18 +67,12 @@ public class MainActivity extends AppCompatActivity {
                 toppingsList.add(box.getText().toString().toLowerCase());
             }
         }
-        String toppings = "";
-        for (int i = 0; i < toppingsList.size() - 1; i++) {
-           toppings += toppingsList.get(i) + ", ";
-        }
-        if (toppingsList.size() > 0)
-            toppings += "and " + toppingsList.get(toppingsList.size() - 1);
-        else
-            toppings = "and no toppings";
 
-        String result = String.format("The %s pizza is a %s %s crust pizza with %s sauce, cheese, %s.", name, size, crust, sauce, toppings);
+        pizza = new Pizza(name, sauce, size, crust, toppingsList);
+        String result = pizza.toString();
         resultTextView.setText(result);
     }
+
 
     public void makeToast() {
        Toast.makeText(getApplicationContext(),

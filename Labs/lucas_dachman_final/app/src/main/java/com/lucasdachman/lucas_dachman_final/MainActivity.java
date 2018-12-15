@@ -1,10 +1,9 @@
 package com.lucasdachman.lucas_dachman_final;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioButton;
@@ -78,5 +77,21 @@ public class MainActivity extends AppCompatActivity {
        Toast.makeText(getApplicationContext(),
                "Please fill out all options", Toast.LENGTH_LONG)
                .show();
+    }
+
+    public void goToSuggestion(View view) {
+        generate(null);
+        String suggestion, url;
+        try {
+           suggestion = pizza.getSuggestion();
+           url = pizza.getSuggestionURL();
+        } catch (Exception e) {
+           makeToast();
+           return;
+        }
+        Intent intent = new Intent(this, SuggestionActivity.class);
+        intent.putExtra("SUGGESTION", suggestion);
+        intent.putExtra("URL", url);
+        startActivity(intent);
     }
 }

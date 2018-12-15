@@ -1,9 +1,10 @@
 package com.lucasdachman.lucas_dachman_final;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class Pizza {
-    private String name, sauce, size, crust;
+    private String name, sauce, size, crust, suggestion;
     private ArrayList<String> toppingsList;
 
     public Pizza() {
@@ -16,6 +17,26 @@ public class Pizza {
         this.size = size;
         this.crust = crust;
         this.toppingsList = toppingsList;
+        setSuggestion();
+    }
+
+    private void setSuggestion() {
+        if (crust.toLowerCase().equals("thick")) {
+            suggestion = "Backcountry Pizza";
+        } else {
+            suggestion = "Pizzeria Locale";
+        }    }
+
+    public String getSuggestion() {
+        return suggestion;
+    }
+
+    public String getSuggestionURL() {
+        if (suggestion.equals("Backcountry Pizza")) {
+            return "https://backcountrypizzaandtaphouse.info/";
+        } else {
+            return "https://localeboulder.com/";
+        }
     }
 
     @Override
@@ -63,6 +84,7 @@ public class Pizza {
 
     public void setCrust(String crust) {
         this.crust = crust;
+        setSuggestion();
     }
 
     public ArrayList<String> getToppingsList() {

@@ -13,6 +13,9 @@
     <string name="sausage">Sausage</string>
     <string name="mushrooms">Mushrooms</string>
     <string name="onions">Onions</string>
+    <string name="placeholder">placeholder</string>
+    <string name="more">More...</string>
+    <string name="go_to_site">Go To Site</string>
 
     <string-array name="sizes">
         <item>Small</item>

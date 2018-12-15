@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">lucas_dachman_final</string>
+    <string name="build_your_pizza">Build Your Pizza!</string>
+    <string name="name_pizza_hint">Name</string>
+    <string name="sauce">Sauce</string>
+    <string name="white">White</string>
+    <string name="red">Red</string>
+    <string name="pizza">Pizza!</string>
+    <string name="thin">Thin</string>
+    <string name="thick">Thick</string>
+    <string name="crust">Crust:</string>
+    <string name="pepperoni">Pepperoni</string>
+    <string name="sausage">Sausage</string>
+    <string name="mushrooms">Mushrooms</string>
+    <string name="onions">Onions</string>
+
+    <string-array name="sizes">
+        <item>Small</item>
+        <item>Medium</item>
+        <item>Large</item>
+    </string-array>
+</resources>

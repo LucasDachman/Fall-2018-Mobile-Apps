@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A01ED213220942E800115383 /* TrackConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = A01ED212220942E800115383 /* TrackConfig.swift */; };
 		A03F3B972208BE2C003687B1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A03F3B962208BE2C003687B1 /* AppDelegate.swift */; };
 		A03F3B992208BE2C003687B1 /* SoundPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A03F3B982208BE2C003687B1 /* SoundPickerViewController.swift */; };
 		A03F3B9B2208BE2C003687B1 /* SoundPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A03F3B9A2208BE2C003687B1 /* SoundPlayerViewController.swift */; };
@@ -18,6 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A01ED212220942E800115383 /* TrackConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackConfig.swift; sourceTree = "<group>"; };
 		A03F3B932208BE2C003687B1 /* lab-1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "lab-1.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A03F3B962208BE2C003687B1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A03F3B982208BE2C003687B1 /* SoundPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundPickerViewController.swift; sourceTree = "<group>"; };
@@ -64,6 +66,7 @@
 				A03F3B962208BE2C003687B1 /* AppDelegate.swift */,
 				A03F3B982208BE2C003687B1 /* SoundPickerViewController.swift */,
 				A03F3B9A2208BE2C003687B1 /* SoundPlayerViewController.swift */,
+				A01ED212220942E800115383 /* TrackConfig.swift */,
 				A03F3B9C2208BE2C003687B1 /* Main.storyboard */,
 				A03F3B9F2208BE2F003687B1 /* Assets.xcassets */,
 				A03F3BA12208BE2F003687B1 /* LaunchScreen.storyboard */,
@@ -149,6 +152,7 @@
 				A03F3B9B2208BE2C003687B1 /* SoundPlayerViewController.swift in Sources */,
 				A03F3B972208BE2C003687B1 /* AppDelegate.swift in Sources */,
 				A03F3B992208BE2C003687B1 /* SoundPickerViewController.swift in Sources */,
+				A01ED213220942E800115383 /* TrackConfig.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

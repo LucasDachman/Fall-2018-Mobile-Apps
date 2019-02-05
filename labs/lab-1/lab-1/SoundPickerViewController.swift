@@ -9,11 +9,6 @@
 import UIKit
 import os
 
-struct TrackConfig {
-    var category: Int = 0
-    var sound: Int = 0
-}
-
 class SoundPickerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     
     @IBOutlet weak var soundPicker: UIPickerView!
@@ -126,6 +121,13 @@ class SoundPickerViewController: UIViewController, UIPickerViewDelegate, UIPicke
             trackConfigs[currentTrack].sound = currentSound
         default:
             print("no component found: \(row)")
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.destination is SoundPlayerViewController {
+            let vc = segue.destination as? SoundPlayerViewController
+            vc?.trackConfigs = trackConfigs
         }
     }
 }

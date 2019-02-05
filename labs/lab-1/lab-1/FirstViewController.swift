@@ -14,6 +14,13 @@ class FirstViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     @IBOutlet weak var soundPicker: UIPickerView!
     
     var categories: [String] = []
+    let NUM_TRACKS = 4
+    enum PickerComponent: Int {
+        case TRACK, CATEGORY, SOUND
+    }
+    
+    var currentTrack = 0, currentSound = 0, currentCategory = 0
+    var currentSoundNames: [String] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,10 +29,15 @@ class FirstViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
         soundPicker.dataSource = self
     }
     
-    func getSounds() {
-        let urls = Bundle.main.urls(forResourcesWithExtension: "wav", subdirectory: "Drum_Samples/Claps")
-        let stringUrls = urls.map{$0[3].lastPathComponent} ?? "none"
-        os_log("URLS: %@", stringUrls)
+    func getSoundNames(forCategory cat: String) -> [String] {
+        // read names of files in given category directory
+        guard let urls = Bundle.main.urls(forResourcesWithExtension: "wav", subdirectory: "Drum_Samples/\(cat)")
+        else {
+            print("cant find url for \(cat)")
+            return []
+        }
+        let soundNames = urls.map{$0.lastPathComponent}
+        return soundNames
     }
     
     func loadData() {
@@ -41,18 +53,47 @@ class FirstViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
+        return 3
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return categories.count
+        switch component {
+        case PickerComponent.TRACK.rawValue:
+            return NUM_TRACKS
+        case PickerComponent.CATEGORY.rawValue:
+            return categories.count
+        case PickerComponent.SOUND.rawValue:
+            return currentSoundNames.count
+        default:
+            return 0
+        }
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return categories[row]
+        switch component {
+        case PickerComponent.TRACK.rawValue:
+            return "Track \(row + 1)"
+        case PickerComponent.CATEGORY.rawValue:
+            return categories[row]
+        case PickerComponent.SOUND.rawValue:
+            return currentSoundNames[row]
+        default:
+            return "Default"
+        }
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        
+        switch component {
+        case PickerComponent.TRACK.rawValue:
+            currentTrack = row
+        case PickerComponent.CATEGORY.rawValue:
+            currentCategory = row
+            currentSoundNames = getSoundNames(forCategory: categories[currentCategory])
+            soundPicker.reloadComponent(PickerComponent.SOUND.rawValue)
+        case PickerComponent.SOUND.rawValue:
+            currentSound = row
+        default:
+            print("no component found: \(row)")
+        }
     }
 }

@@ -14,7 +14,7 @@ struct TrackConfig {
     var sound: Int = 0
 }
 
-class FirstViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
+class SoundPickerViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     
     @IBOutlet weak var soundPicker: UIPickerView!
     

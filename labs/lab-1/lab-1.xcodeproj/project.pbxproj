@@ -8,8 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		A03F3B972208BE2C003687B1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A03F3B962208BE2C003687B1 /* AppDelegate.swift */; };
-		A03F3B992208BE2C003687B1 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A03F3B982208BE2C003687B1 /* FirstViewController.swift */; };
-		A03F3B9B2208BE2C003687B1 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A03F3B9A2208BE2C003687B1 /* SecondViewController.swift */; };
+		A03F3B992208BE2C003687B1 /* SoundPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A03F3B982208BE2C003687B1 /* SoundPickerViewController.swift */; };
+		A03F3B9B2208BE2C003687B1 /* SoundPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A03F3B9A2208BE2C003687B1 /* SoundPlayerViewController.swift */; };
 		A03F3B9E2208BE2C003687B1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A03F3B9C2208BE2C003687B1 /* Main.storyboard */; };
 		A03F3BA02208BE2F003687B1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A03F3B9F2208BE2F003687B1 /* Assets.xcassets */; };
 		A03F3BA32208BE2F003687B1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A03F3BA12208BE2F003687B1 /* LaunchScreen.storyboard */; };
@@ -20,8 +20,8 @@
 /* Begin PBXFileReference section */
 		A03F3B932208BE2C003687B1 /* lab-1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "lab-1.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A03F3B962208BE2C003687B1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		A03F3B982208BE2C003687B1 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
-		A03F3B9A2208BE2C003687B1 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
+		A03F3B982208BE2C003687B1 /* SoundPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundPickerViewController.swift; sourceTree = "<group>"; };
+		A03F3B9A2208BE2C003687B1 /* SoundPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundPlayerViewController.swift; sourceTree = "<group>"; };
 		A03F3B9D2208BE2C003687B1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A03F3B9F2208BE2F003687B1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A03F3BA22208BE2F003687B1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -62,8 +62,8 @@
 			children = (
 				A03F3BAE2208C874003687B1 /* Drum_Samples */,
 				A03F3B962208BE2C003687B1 /* AppDelegate.swift */,
-				A03F3B982208BE2C003687B1 /* FirstViewController.swift */,
-				A03F3B9A2208BE2C003687B1 /* SecondViewController.swift */,
+				A03F3B982208BE2C003687B1 /* SoundPickerViewController.swift */,
+				A03F3B9A2208BE2C003687B1 /* SoundPlayerViewController.swift */,
 				A03F3B9C2208BE2C003687B1 /* Main.storyboard */,
 				A03F3B9F2208BE2F003687B1 /* Assets.xcassets */,
 				A03F3BA12208BE2F003687B1 /* LaunchScreen.storyboard */,
@@ -146,9 +146,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A03F3B9B2208BE2C003687B1 /* SecondViewController.swift in Sources */,
+				A03F3B9B2208BE2C003687B1 /* SoundPlayerViewController.swift in Sources */,
 				A03F3B972208BE2C003687B1 /* AppDelegate.swift in Sources */,
-				A03F3B992208BE2C003687B1 /* FirstViewController.swift in Sources */,
+				A03F3B992208BE2C003687B1 /* SoundPickerViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -31,7 +31,7 @@ class SoundPickerViewController: UIViewController, UIPickerViewDelegate, UIPicke
         soundPicker.dataSource = self
         
         // initialize track configs
-        for _ in 0...NUM_TRACKS {
+        for _ in 0..<NUM_TRACKS {
             trackConfigs.append(TrackConfig())
         }
     }
@@ -122,12 +122,19 @@ class SoundPickerViewController: UIViewController, UIPickerViewDelegate, UIPicke
         default:
             print("no component found: \(row)")
         }
+        setState()
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.destination is SoundPlayerViewController {
-            let vc = segue.destination as? SoundPlayerViewController
-            vc?.trackConfigs = trackConfigs
+    func setState() {
+        var soundNames = [String]()
+        for config in trackConfigs {
+            let category = categories[config.category]
+            var soundName = getSoundNames(forCategory: category)[config.sound]
+            soundName.removeLast(4)
+            soundName = "Drum_Samples/\(category)/\(soundName)"
+            soundNames.append(soundName)
         }
+        ChosenSounds.setSounds(soundNames)
     }
 }
+

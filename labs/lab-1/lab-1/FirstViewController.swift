@@ -9,6 +9,11 @@
 import UIKit
 import os
 
+struct TrackConfig {
+    var category: Int = 0
+    var sound: Int = 0
+}
+
 class FirstViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     
     @IBOutlet weak var soundPicker: UIPickerView!
@@ -21,12 +26,25 @@ class FirstViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     
     var currentTrack = 0, currentSound = 0, currentCategory = 0
     var currentSoundNames: [String] = []
+    var trackConfigs = [TrackConfig]()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         loadData()
         soundPicker.delegate = self
         soundPicker.dataSource = self
+        
+        // initialize track configs
+        for _ in 0...NUM_TRACKS {
+            trackConfigs.append(TrackConfig())
+        }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        soundPicker.selectRow(0, inComponent: PickerComponent.TRACK.rawValue, animated: true)
+        soundPicker.selectRow(0, inComponent: PickerComponent.CATEGORY.rawValue, animated: true)
+        soundPicker.selectRow(0, inComponent: PickerComponent.SOUND.rawValue, animated: true)
     }
     
     func getSoundNames(forCategory cat: String) -> [String] {
@@ -86,12 +104,26 @@ class FirstViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
         switch component {
         case PickerComponent.TRACK.rawValue:
             currentTrack = row
+            let config = trackConfigs[currentTrack]
+            if currentCategory != config.category {
+                currentCategory = config.category
+                currentSoundNames = getSoundNames(forCategory: categories[currentCategory])
+            }
+            currentSound = config.sound
+            soundPicker.selectRow(config.category, inComponent: PickerComponent.CATEGORY.rawValue, animated: true)
+            soundPicker.selectRow(config.sound, inComponent: PickerComponent.SOUND.rawValue, animated: true)
+            soundPicker.reloadComponent(PickerComponent.SOUND.rawValue)
         case PickerComponent.CATEGORY.rawValue:
             currentCategory = row
+            trackConfigs[currentTrack].category = currentCategory
+            trackConfigs[currentTrack].sound = currentSound
             currentSoundNames = getSoundNames(forCategory: categories[currentCategory])
+            soundPicker.selectRow(0, inComponent: PickerComponent.SOUND.rawValue, animated: true)
             soundPicker.reloadComponent(PickerComponent.SOUND.rawValue)
         case PickerComponent.SOUND.rawValue:
             currentSound = row
+            trackConfigs[currentTrack].category = currentCategory
+            trackConfigs[currentTrack].sound = currentSound
         default:
             print("no component found: \(row)")
         }

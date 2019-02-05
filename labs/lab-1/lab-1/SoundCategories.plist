@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<string>Bongos</string>
+	<string>Claps</string>
+	<string>Cymbals</string>
+	<string>Hats</string>
+	<string>Kick</string>
+	<string>Other Percs</string>
+	<string>SFX</string>
+	<string>Shaker</string>
+	<string>Snaps</string>
+	<string>Snares</string>
+	<string>Sticks</string>
+	<string>Tabla</string>
+	<string>Toms</string>
+</array>
+</plist>

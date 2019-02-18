@@ -44,7 +44,15 @@ class ContinentDataModelController {
         allData[continent].countries.insert(name, at: i)
     }
     
+    func addCountry(continentIndex continent: Int, countryName name: String) {
+        allData[continent].countries.append(name)
+    }
+    
     func removeCountry(fromContinent continent: Int, countryIndex i: Int) {
         allData[continent].countries.remove(at: i)
+    }
+    
+    func swapCountries(forContinent cont: Int, _ i: Int, _ j: Int) {
+        allData[cont].countries.swapAt(i, j)
     }
 }

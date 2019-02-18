@@ -14,6 +14,7 @@
 		A011EB9F221B244A0065A576 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A011EB9E221B244A0065A576 /* Assets.xcassets */; };
 		A011EBA2221B244A0065A576 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A011EBA0221B244A0065A576 /* LaunchScreen.storyboard */; };
 		A0273003221B286400091D5C /* NotesStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0273002221B286400091D5C /* NotesStore.swift */; };
+		A0273005221B3BF500091D5C /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0273004221B3BF500091D5C /* Note.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		A011EBA1221B244A0065A576 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A011EBA3221B244A0065A576 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A0273002221B286400091D5C /* NotesStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesStore.swift; sourceTree = "<group>"; };
+		A0273004221B3BF500091D5C /* Note.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +63,7 @@
 				A011EB95221B24470065A576 /* AppDelegate.swift */,
 				A011EB97221B24470065A576 /* MasterViewController.swift */,
 				A0273002221B286400091D5C /* NotesStore.swift */,
+				A0273004221B3BF500091D5C /* Note.swift */,
 				A011EB99221B24470065A576 /* DetailViewController.swift */,
 				A011EB9B221B24470065A576 /* Main.storyboard */,
 				A011EB9E221B244A0065A576 /* Assets.xcassets */,
@@ -141,6 +144,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A0273005221B3BF500091D5C /* Note.swift in Sources */,
 				A011EB9A221B24470065A576 /* DetailViewController.swift in Sources */,
 				A0273003221B286400091D5C /* NotesStore.swift in Sources */,
 				A011EB98221B24470065A576 /* MasterViewController.swift in Sources */,

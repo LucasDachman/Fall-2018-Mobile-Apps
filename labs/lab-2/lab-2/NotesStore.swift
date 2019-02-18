@@ -9,29 +9,40 @@
 import Foundation
 
 class NotesStore {
-    var notes = [String]()
+    var notes = [Note]()
     
     static var instance = NotesStore()
+    static var filter = String()
     
-    static var notes: [String] {
+    static var notes: [Note] {
         get {
-            return instance.notes
+            if filter == "" {
+                return instance.notes
+            }
+            return instance.notes.filter {$0.text.contains(filter)}
         }
     }
     
+    static func get(withUUID uuid: UUID) -> Note? {
+        return instance.notes.first(where: {$0.uuid == uuid})
+    }
+    
     static func append(note: String) {
-        instance.notes.append(note)
+        instance.notes.append(Note(note))
     }
     
     static func insert(_ note: String, at index: Int) {
-        instance.notes.insert(note, at: index)
+        instance.notes.insert(Note(note), at: index)
     }
 
-    static func remove(at index: Int) {
-        instance.notes.remove(at: index)
+    static func remove(withUUID uuid: UUID) {
+        instance.notes.removeAll(where: {$0.uuid == uuid})
     }
 
-    static func replace(at index: Int, with text: String) {
-        instance.notes[index] = text
+    static func replace(noteWithUUID uuid: UUID, with text: String) {
+        if let index = instance.notes.firstIndex(where: {$0.uuid == uuid}) {
+            instance.notes[index].text = text
+        }
+        
     }
 }

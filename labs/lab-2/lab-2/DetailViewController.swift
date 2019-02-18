@@ -10,38 +10,28 @@ import UIKit
 
 class DetailViewController: UIViewController, UITextViewDelegate {
     @IBOutlet weak var textView: UITextView!
-    
-    func configureView() {
-        // Update the user interface for the detail item.
-        if let noteIndex = noteIndex {
-            if let textView = textView {
-                textView.text = NotesStore.notes[noteIndex]
-            }
-        }
-    }
+    var noteUUID: UUID?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         textView.delegate = self
-        configureView()
     }
-
-    var noteIndex: Int? {
-        didSet {
-            // Update the view.
-            configureView()
+    
+    override func viewWillAppear(_ animated: Bool) {
+        if let noteUUID = noteUUID {
+            if let note = NotesStore.get(withUUID: noteUUID) {
+                textView.text = note.text
+            }
         }
     }
 
     func textViewDidEndEditing(_ textView: UITextView) {
         // if the user changed the text, change it in the store
-
-        if textView.text != NotesStore.notes[noteIndex!] {
-            NotesStore.replace(at: noteIndex!, with: textView.text)
-            print("replaced text!")
-
+        if let noteUUID = noteUUID {
+            if textView.text != NotesStore.get(withUUID: noteUUID)!.text {
+                NotesStore.replace(noteWithUUID: noteUUID, with: textView.text)
+            }
         }
     }
 }
-

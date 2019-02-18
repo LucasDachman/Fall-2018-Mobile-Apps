@@ -8,9 +8,10 @@
 
 import UIKit
 
-class MasterViewController: UITableViewController {
+class MasterViewController: UITableViewController, UISearchBarDelegate {
 
     var detailViewController: DetailViewController? = nil
+    var filteredNotes = [String]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,8 +28,9 @@ class MasterViewController: UITableViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         clearsSelectionOnViewWillAppear = splitViewController!.isCollapsed
-        super.viewWillAppear(animated)
         tableView.reloadData()
+        super.viewWillAppear(animated)
+        
     }
 
     @objc
@@ -45,7 +47,8 @@ class MasterViewController: UITableViewController {
         if segue.identifier == "showDetail" {
             if let indexPath = tableView.indexPathForSelectedRow {
                 let controller = (segue.destination as! UINavigationController).topViewController as! DetailViewController
-                controller.noteIndex = indexPath.row
+                let uuid = NotesStore.notes[indexPath.row].uuid
+                controller.noteUUID = uuid
                 controller.navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
                 controller.navigationItem.leftItemsSupplementBackButton = true
             }
@@ -66,7 +69,7 @@ class MasterViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
 
         let note = NotesStore.notes[indexPath.row]
-        cell.textLabel!.text = note
+        cell.textLabel!.text = note.text
         return cell
     }
 
@@ -77,12 +80,19 @@ class MasterViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            NotesStore.remove(at: indexPath.row)
+            let uuid = NotesStore.notes[indexPath.row].uuid
+            NotesStore.remove(withUUID: uuid)
             tableView.deleteRows(at: [indexPath], with: .fade)
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
         }
     }
+    
+    // MARK: - Search Bar
+//
+//    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+//        <#code#>
+//    }
 
 
 }

@@ -25,9 +25,8 @@ class DetailViewController: UIViewController, UITextViewDelegate {
             }
         }
     }
-
-    func textViewDidEndEditing(_ textView: UITextView) {
-        // if the user changed the text, change it in the store
+    
+    func textViewDidChange(_ textView: UITextView) {
         if let noteUUID = noteUUID {
             if textView.text != NotesStore.get(withUUID: noteUUID)!.text {
                 NotesStore.replace(noteWithUUID: noteUUID, with: textView.text)

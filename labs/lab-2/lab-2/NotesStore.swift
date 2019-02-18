@@ -16,10 +16,14 @@ class NotesStore {
     
     static var notes: [Note] {
         get {
+            var val: [Note]
             if filter == "" {
-                return instance.notes
+                val = instance.notes
+            } else {
+                val = instance.notes.filter {$0.text.lowercased().contains(filter)}
             }
-            return instance.notes.filter {$0.text.contains(filter)}
+            print("getting notes. count is \(val.count)")
+            return val
         }
     }
     

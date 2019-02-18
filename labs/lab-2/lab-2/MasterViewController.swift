@@ -11,7 +11,6 @@ import UIKit
 class MasterViewController: UITableViewController, UISearchBarDelegate {
 
     var detailViewController: DetailViewController? = nil
-    var filteredNotes = [String]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,9 +27,8 @@ class MasterViewController: UITableViewController, UISearchBarDelegate {
 
     override func viewWillAppear(_ animated: Bool) {
         clearsSelectionOnViewWillAppear = splitViewController!.isCollapsed
-        tableView.reloadData()
         super.viewWillAppear(animated)
-        
+        tableView.reloadData()
     }
 
     @objc
@@ -62,6 +60,7 @@ class MasterViewController: UITableViewController, UISearchBarDelegate {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        print("count is \(NotesStore.notes.count)")
         return NotesStore.notes.count
     }
 
@@ -89,10 +88,17 @@ class MasterViewController: UITableViewController, UISearchBarDelegate {
     }
     
     // MARK: - Search Bar
-//
-//    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-//        <#code#>
-//    }
+
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        NotesStore.filter = searchText.lowercased()
+        // enable / disable add button
+        if searchText == "" {
+            navigationItem.rightBarButtonItem?.isEnabled = true
+        } else {
+            navigationItem.rightBarButtonItem?.isEnabled = false
+        }
+        tableView.reloadData()
+    }
 
 
 }

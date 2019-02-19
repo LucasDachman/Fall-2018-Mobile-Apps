@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Note {
+struct Note : Codable {
     init(_ text: String) {
         self.text = text
         self.uuid = UUID()

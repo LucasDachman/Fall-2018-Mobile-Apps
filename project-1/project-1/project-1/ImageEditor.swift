@@ -38,6 +38,8 @@ class ImageEditor {
         }
     }
     static var appliedFilters = [Filter]()
+    static var exposureFilter = Filter(displayName: "Exposure", name: "CIExposureAdjust", effectValue: 0.5, effectValueName: kCIInputEVKey)
+    static var hueFilter = Filter(displayName: "Hue", name: "CIHueAdjust", effectValue: 0.0, effectValueName: kCIInputAngleKey)
     
     private static var editedImage: CGImage?
     private static let ciContext = CIContext()
@@ -78,6 +80,8 @@ class ImageEditor {
         for filter in appliedFilters {
             apply(filter)
         }
+        apply(exposureFilter)
+        apply(hueFilter)
         
         // check that image editing succeeded
         guard let finalImage = editedImage else {
@@ -91,10 +95,11 @@ class ImageEditor {
     static let allFilters: [Filter] = [
         Filter(displayName: "Sepia", name: "CISepiaTone", effectValue: 0.75, effectValueName: kCIInputIntensityKey),
         Filter(displayName: "Noir", name: "CIPhotoEffectNoir", effectValue: nil, effectValueName: nil),
-        Filter(displayName: "Vignette", name: "CIVignette", effectValue: nil, effectValueName: nil),
+        Filter(displayName: "Vignette", name: "CIVignette", effectValue: 0.7, effectValueName: kCIInputIntensityKey),
         Filter(displayName: "Cool Vintage", name: "CIPhotoEffectProcess", effectValue: nil, effectValueName: nil),
         Filter(displayName: "Chrome", name: "CIPhotoEffectChrome", effectValue: nil, effectValueName: nil),
-        Filter(displayName: "Warm Vintage", name: "CIPhotoEffectTransfer", effectValue: nil, effectValueName: nil)
+        Filter(displayName: "Warm Vintage", name: "CIPhotoEffectTransfer", effectValue: nil, effectValueName: nil),
+        Filter(displayName: "Invert", name: "CIColorInvert", effectValue: nil, effectValueName: nil)
     ]
     
 }

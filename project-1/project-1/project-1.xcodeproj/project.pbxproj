@@ -16,6 +16,7 @@
 		A031ED8F22338D9C00E26B8D /* FiltersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A031ED8E22338D9C00E26B8D /* FiltersTableViewController.swift */; };
 		A031ED912234A51600E26B8D /* ImageEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A031ED902234A51600E26B8D /* ImageEditor.swift */; };
 		A031ED932237588A00E26B8D /* PickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A031ED922237588A00E26B8D /* PickerViewController.swift */; };
+		A031ED952237834100E26B8D /* SliderConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = A031ED942237834100E26B8D /* SliderConfig.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		A031ED8E22338D9C00E26B8D /* FiltersTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiltersTableViewController.swift; sourceTree = "<group>"; };
 		A031ED902234A51600E26B8D /* ImageEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageEditor.swift; sourceTree = "<group>"; };
 		A031ED922237588A00E26B8D /* PickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerViewController.swift; sourceTree = "<group>"; };
+		A031ED942237834100E26B8D /* SliderConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderConfig.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +71,7 @@
 				A031ED8E22338D9C00E26B8D /* FiltersTableViewController.swift */,
 				A031ED922237588A00E26B8D /* PickerViewController.swift */,
 				A031ED902234A51600E26B8D /* ImageEditor.swift */,
+				A031ED942237834100E26B8D /* SliderConfig.swift */,
 				A031ED8122334FC200E26B8D /* Assets.xcassets */,
 				A031ED8322334FC200E26B8D /* LaunchScreen.storyboard */,
 				A031ED8622334FC200E26B8D /* Info.plist */,
@@ -148,6 +151,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A031ED932237588A00E26B8D /* PickerViewController.swift in Sources */,
+				A031ED952237834100E26B8D /* SliderConfig.swift in Sources */,
 				A031ED7D22334FBD00E26B8D /* ViewController.swift in Sources */,
 				A031ED8D22337B5F00E26B8D /* EditTableViewController.swift in Sources */,
 				A031ED8F22338D9C00E26B8D /* FiltersTableViewController.swift in Sources */,

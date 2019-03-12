@@ -71,11 +71,15 @@ class ImageEditor {
     
     static var filteredImage: UIImage? {
         
+        // reset image
+        editedImage = originalImage?.cgImage
+        
         // apply all the filters sequentially
         for filter in appliedFilters {
             apply(filter)
         }
         
+        // check that image editing succeeded
         guard let finalImage = editedImage else {
             print("Error getting filteredImage: editedImage is nil")
             return nil

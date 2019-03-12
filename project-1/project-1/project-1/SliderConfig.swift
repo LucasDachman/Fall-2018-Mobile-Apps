@@ -11,4 +11,5 @@ import Foundation
 class SliderConfig {
     static var exposure: Float = 0.5
     static var hue: Float = 0.0
+    static var saturation: Float = 1.0
 }

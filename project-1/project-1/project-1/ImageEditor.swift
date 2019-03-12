@@ -40,6 +40,7 @@ class ImageEditor {
     static var appliedFilters = [Filter]()
     static var exposureFilter = Filter(displayName: "Exposure", name: "CIExposureAdjust", effectValue: 0.5, effectValueName: kCIInputEVKey)
     static var hueFilter = Filter(displayName: "Hue", name: "CIHueAdjust", effectValue: 0.0, effectValueName: kCIInputAngleKey)
+    static var saturationFilter = Filter(displayName: "saturation", name: "CIColorControls", effectValue: 1.0, effectValueName: kCIInputSaturationKey)
     
     private static var editedImage: CGImage?
     private static let ciContext = CIContext()
@@ -81,6 +82,7 @@ class ImageEditor {
             apply(filter)
         }
         apply(exposureFilter)
+        apply(saturationFilter)
         apply(hueFilter)
         
         // check that image editing succeeded

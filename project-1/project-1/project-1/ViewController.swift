@@ -48,5 +48,18 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         saveButton.isEnabled = true
         imagePicker.dismiss(animated: true, completion: nil)
     }
+    
+    @IBAction func onTouchSave(_ sender: Any) {
+        guard let imageToSave = ImageEditor.filteredImage else {
+            let alertFail = UIAlertController(title: "Save Image", message: "Unable to save image", preferredStyle: .alert)
+            present(alertFail, animated: true)
+            return
+        }
+        UIImageWriteToSavedPhotosAlbum(imageToSave, {() in
+            print("success")
+            let alertSuccess = UIAlertController(title: "Save Image", message: "Image Saved", preferredStyle: .alert)
+            self.present(alertSuccess, animated: true)
+        }, nil, nil)
+    }
 }
 

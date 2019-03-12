@@ -31,25 +31,13 @@ class FiltersTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return ImageEditor.appliedFilters.count + 1
+        return ImageEditor.appliedFilters.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath)
-        
-        if indexPath.row == tableView.numberOfRows(inSection: 0) - 1 {
-            cell.textLabel?.text = "Add"
-            cell.textLabel?.textAlignment = .center
-            cell.backgroundColor = UIColor.groupTableViewBackground
-            cell.selectionStyle = .default
-//            cell.isUserInteractionEnabled = true
-        } else {
             cell.textLabel?.text = ImageEditor.appliedFilters[indexPath.row].displayName
-            cell.textLabel?.textAlignment = .justified
-            cell.backgroundColor = UIColor.white
             cell.selectionStyle = .none
-//            cell.isUserInteractionEnabled = false
-        }
 
         return cell
     }
@@ -73,21 +61,11 @@ class FiltersTableViewController: UITableViewController {
 
     // Override to support conditional rearranging of the table view.
     override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // exclude "add" row
-        if indexPath.row == tableView.numberOfRows(inSection: 0) - 1 {
-            return false
-        } else {
-            return true
-        }
+        return true
     }
     
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // exclude "add" row
-        if indexPath.row == tableView.numberOfRows(inSection: 0) - 1 {
-            return false
-        } else {
-            return true
-        }
+        return true
     }
     
 

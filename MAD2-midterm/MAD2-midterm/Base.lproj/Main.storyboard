@@ -112,17 +112,21 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Movies" id="Zdf-7t-Un8">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="Jy0-ze-C6R"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="Jy0-ze-C6R">
+                            <connections>
+                                <segue destination="acz-I5-LLA" kind="presentation" id="P0l-Gj-kZs"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rux-fX-hf1" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="709" y="-630"/>
         </scene>
-        <!--View Controller-->
+        <!--Add New Movie View Controller-->
         <scene sceneID="HMq-Ta-fAN">
             <objects>
-                <viewController id="acz-I5-LLA" sceneMemberID="viewController">
+                <viewController id="acz-I5-LLA" customClass="AddNewMovieViewController" customModule="MAD2_midterm" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ZXS-WV-TLe">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -151,7 +155,18 @@
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SX7-SJ-TBI">
                                 <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                                 <items>
-                                    <navigationItem title="Title" id="W8E-G7-EbZ"/>
+                                    <navigationItem title="Title" id="W8E-G7-EbZ">
+                                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="v48-rR-3yB">
+                                            <connections>
+                                                <action selector="onCancel:" destination="acz-I5-LLA" id="5M8-7f-0Om"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="FMh-ed-Sql">
+                                            <connections>
+                                                <action selector="onDone:" destination="acz-I5-LLA" id="ghR-H5-phy"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
                                 </items>
                             </navigationBar>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gqq-nX-tpP">

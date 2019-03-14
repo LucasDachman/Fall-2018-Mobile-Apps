@@ -13,6 +13,7 @@
 		A06C9B69223AC27C00C20163 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A06C9B67223AC27C00C20163 /* Main.storyboard */; };
 		A06C9B6B223AC27F00C20163 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A06C9B6A223AC27F00C20163 /* Assets.xcassets */; };
 		A06C9B6E223AC27F00C20163 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A06C9B6C223AC27F00C20163 /* LaunchScreen.storyboard */; };
+		A06C9B78223AC65800C20163 /* AddNewMovieViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A06C9B77223AC65800C20163 /* AddNewMovieViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		A06C9B6A223AC27F00C20163 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A06C9B6D223AC27F00C20163 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A06C9B6F223AC27F00C20163 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A06C9B77223AC65800C20163 /* AddNewMovieViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AddNewMovieViewController.swift; path = "MAD2-midterm/AddNewMovieViewController.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -40,6 +42,7 @@
 		A06C9B55223AC27B00C20163 = {
 			isa = PBXGroup;
 			children = (
+				A06C9B77223AC65800C20163 /* AddNewMovieViewController.swift */,
 				A06C9B60223AC27B00C20163 /* MAD2-midterm */,
 				A06C9B5F223AC27B00C20163 /* Products */,
 			);
@@ -138,6 +141,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A06C9B78223AC65800C20163 /* AddNewMovieViewController.swift in Sources */,
 				A06C9B66223AC27C00C20163 /* DetailViewController.swift in Sources */,
 				A06C9B64223AC27B00C20163 /* MasterViewController.swift in Sources */,
 				A06C9B62223AC27B00C20163 /* AppDelegate.swift in Sources */,

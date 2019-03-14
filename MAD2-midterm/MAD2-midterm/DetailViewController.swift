@@ -7,21 +7,48 @@
 //
 
 import UIKit
+import WebKit
 
-class DetailViewController: UIViewController {
+class DetailViewController: UIViewController, WKUIDelegate, WKNavigationDelegate {
 
-    @IBOutlet weak var detailDescriptionLabel: UILabel!
+    @IBOutlet weak var webView: WKWebView!
+    @IBOutlet weak var webSpinner: UIActivityIndicatorView!
+    
     var movie: Movie?
-
-
-    func configureView() {
-        detailDescriptionLabel.text = movie?.name
+    
+    func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
+        webSpinner.startAnimating()
+    }
+    
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        webSpinner.stopAnimating()
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        configureView()
+        webSpinner.hidesWhenStopped = true
+        webView.uiDelegate = self
+        webView.navigationDelegate = self
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        if let title = movie?.name {
+            navigationItem.title = title
+        }
+        DispatchQueue.main.async {self.loadURL()}
+    }
+    
+    func loadURL() {
+        guard let urlPath = movie?.url,
+            let url = URL(string: urlPath)
+            else {
+                print("could not evaluate url")
+                navigationItem.title = "Failed"
+                return
+        }
+        
+        let req = URLRequest(url: url)
+        webView.load(req)
     }
 }
 

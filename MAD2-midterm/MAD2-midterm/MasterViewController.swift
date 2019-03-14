@@ -8,12 +8,14 @@
 
 import UIKit
 
-class MasterViewController: UITableViewController {
+class MasterViewController: UITableViewController, UISearchBarDelegate {
 
+    @IBOutlet weak var searchBar: UISearchBar!
     var detailViewController: DetailViewController? = nil
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        searchBar.delegate = self
         // Do any additional setup after loading the view, typically from a nib.
         navigationItem.leftBarButtonItem = editButtonItem
 
@@ -75,6 +77,11 @@ class MasterViewController: UITableViewController {
         }
     }
 
-
+    // MARK: Search bar
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        MovieList.filter = searchText.lowercased()
+        tableView.reloadData()
+    }
 }
 

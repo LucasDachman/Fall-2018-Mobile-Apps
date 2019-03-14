@@ -24,17 +24,16 @@ class MovieList {
         mMovies.append(Movie(name: "Godfather", url: "https://www.imdb.com/title/tt0068646"))
     }
     
-    private static var mInstance: MovieList?
-    static var instance: MovieList {
-        if mInstance == nil {
-            mInstance = MovieList()
-        }
-        return mInstance!
-    }
-    
+    static var filter = String()
+    static var instance = MovieList()
     var mMovies = [Movie]()
+    
     static var movies: [Movie] {
-        return instance.mMovies
+        if filter.isEmpty || filter == "" {
+            return instance.mMovies
+        } else {
+            return instance.mMovies.filter {$0.name.lowercased().contains(filter.lowercased())}
+        }
     }
     
     static func add(_ movie: Movie) {

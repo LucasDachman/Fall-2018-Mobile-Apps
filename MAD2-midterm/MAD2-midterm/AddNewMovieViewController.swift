@@ -9,30 +9,30 @@
 import UIKit
 
 class AddNewMovieViewController: UIViewController {
+    @IBOutlet weak var nameField: UITextField!
+    @IBOutlet weak var urlField: UITextField!
+    var newMovie: Movie?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        newMovie = nil
     }
     
     @IBAction func onCancel(_ sender: Any) {
         dismiss(animated: true, completion: nil)
+        newMovie = nil
     }
     
     @IBAction func onDone(_ sender: Any) {
+        guard let name = nameField.text,
+                let url = urlField.text,
+                !name.isEmpty,
+                !url.isEmpty else {
+            dismiss(animated: true, completion: nil)
+            return
+        }
+        print("onDone")
+        MovieList.add(Movie(name: name, url: url))
         dismiss(animated: true, completion: nil)
     }
-    
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

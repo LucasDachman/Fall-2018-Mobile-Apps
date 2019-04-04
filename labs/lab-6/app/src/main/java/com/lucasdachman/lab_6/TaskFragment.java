@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import com.lucasdachman.lab_6.dummy.DummyContent;
 import com.lucasdachman.lab_6.dummy.DummyContent.DummyItem;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -24,9 +25,9 @@ import java.util.List;
 public class TaskFragment extends Fragment {
 
     // TODO: Customize parameter argument names
-    private static final String ARG_COLUMN_COUNT = "column-count";
+    private static final String ARG_DATA_LIST = "data-list";
     // TODO: Customize parameters
-    private int mColumnCount = 1;
+    private ArrayList<String> dataList;
     private OnListFragmentInteractionListener mListener;
 
     /**
@@ -38,10 +39,10 @@ public class TaskFragment extends Fragment {
 
     // TODO: Customize parameter initialization
     @SuppressWarnings("unused")
-    public static TaskFragment newInstance() {
+    public static TaskFragment newInstance(ArrayList<String> dataList) {
         TaskFragment fragment = new TaskFragment();
         Bundle args = new Bundle();
-        args.putInt(ARG_COLUMN_COUNT, 1);
+        args.putStringArrayList(ARG_DATA_LIST, dataList);
         fragment.setArguments(args);
         return fragment;
     }
@@ -51,7 +52,7 @@ public class TaskFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
         if (getArguments() != null) {
-            mColumnCount = getArguments().getInt(ARG_COLUMN_COUNT);
+            dataList = getArguments().getStringArrayList(ARG_DATA_LIST);
         }
     }
 
@@ -64,12 +65,8 @@ public class TaskFragment extends Fragment {
         if (view instanceof RecyclerView) {
             Context context = view.getContext();
             RecyclerView recyclerView = (RecyclerView) view;
-            if (mColumnCount <= 1) {
-                recyclerView.setLayoutManager(new LinearLayoutManager(context));
-            } else {
-                recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
-            }
-            recyclerView.setAdapter(new MyTaskRecyclerViewAdapter(DummyContent.ITEMS, mListener));
+            recyclerView.setLayoutManager(new LinearLayoutManager(context));
+            recyclerView.setAdapter(new MyTaskRecyclerViewAdapter(dataList, mListener));
         }
         return view;
     }
@@ -104,6 +101,6 @@ public class TaskFragment extends Fragment {
      */
     public interface OnListFragmentInteractionListener {
         // TODO: Update argument type and name
-        void onListFragmentInteraction(DummyItem item);
+        void onListFragmentInteraction(String itemName);
     }
 }

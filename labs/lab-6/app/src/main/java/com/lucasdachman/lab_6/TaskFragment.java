@@ -24,9 +24,6 @@ import java.util.List;
  */
 public class TaskFragment extends Fragment {
 
-    // TODO: Customize parameter argument names
-    private static final String ARG_DATA_LIST = "data-list";
-    // TODO: Customize parameters
     private ArrayList<String> dataList;
     private OnListFragmentInteractionListener mListener;
 
@@ -37,23 +34,15 @@ public class TaskFragment extends Fragment {
     public TaskFragment() {
     }
 
-    // TODO: Customize parameter initialization
     @SuppressWarnings("unused")
-    public static TaskFragment newInstance(ArrayList<String> dataList) {
+    public static TaskFragment newInstance() {
         TaskFragment fragment = new TaskFragment();
-        Bundle args = new Bundle();
-        args.putStringArrayList(ARG_DATA_LIST, dataList);
-        fragment.setArguments(args);
         return fragment;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        if (getArguments() != null) {
-            dataList = getArguments().getStringArrayList(ARG_DATA_LIST);
-        }
     }
 
     @Override
@@ -89,6 +78,10 @@ public class TaskFragment extends Fragment {
         mListener = null;
     }
 
+    public void setDataList(ArrayList<String> list) {
+        this.dataList = list;
+    }
+
     /**
      * This interface must be implemented by activities that contain this
      * fragment to allow an interaction in this fragment to be communicated
@@ -100,7 +93,6 @@ public class TaskFragment extends Fragment {
      * >Communicating with Other Fragments</a> for more information.
      */
     public interface OnListFragmentInteractionListener {
-        // TODO: Update argument type and name
         void onListFragmentInteraction(String itemName);
     }
 }

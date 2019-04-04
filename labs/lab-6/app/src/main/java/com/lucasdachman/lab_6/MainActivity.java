@@ -59,9 +59,14 @@ public class MainActivity extends AppCompatActivity implements TaskFragment.OnLi
         setUpLists();
 
         // create fragment
-        mTaskFragment1 = TaskFragment.newInstance(taskList1);
-        mTaskFragment2 = TaskFragment.newInstance(taskList2);
-        mTaskFragment3 = TaskFragment.newInstance(taskList3);
+        mTaskFragment1 = TaskFragment.newInstance();
+        mTaskFragment1.setDataList(taskList1);
+
+        mTaskFragment2 = TaskFragment.newInstance();
+        mTaskFragment2.setDataList(taskList2);
+
+        mTaskFragment3 = TaskFragment.newInstance();
+        mTaskFragment3.setDataList(taskList3);
 
         loadFragment(mTaskFragment1);
     }

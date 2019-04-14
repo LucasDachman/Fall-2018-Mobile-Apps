@@ -35,18 +35,15 @@
 
             <android.support.design.widget.TabItem
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="One" />
+                android:layout_height="match_parent" />
 
             <android.support.design.widget.TabItem
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="Two" />
+                android:layout_height="match_parent" />
 
             <android.support.design.widget.TabItem
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="Three" />
+                android:layout_height="match_parent" />
         </android.support.design.widget.TabLayout>
 
     </android.support.design.widget.AppBarLayout>

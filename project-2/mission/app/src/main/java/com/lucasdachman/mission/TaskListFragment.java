@@ -6,10 +6,11 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -22,6 +23,11 @@ public class TaskListFragment extends Fragment {
      * fragment.
      */
     private static final String ARG_POSITION = "position";
+
+    private RecyclerView recyclerView;
+    private RecyclerView.LayoutManager layoutManager;
+    private RecyclerView.Adapter adapter;
+    private ArrayList<Task> tasks;
 
     public TaskListFragment() {
     }
@@ -39,11 +45,27 @@ public class TaskListFragment extends Fragment {
     }
 
     @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_main, container, false);
-        ArrayList<Mission> missionsList = MissionStore.getInstance().getMissions();
-        // TODO: render the missions here
+        // View for this instance
+        View rootView = inflater.inflate(R.layout.fragment_task_list, container, false);
+
+        int position = getArguments().getInt(ARG_POSITION);
+        tasks = MissionStore.getInstance().getMissions().get(position).getTasks();
+
+        layoutManager = new LinearLayoutManager(rootView.getContext());
+        adapter = new TaskListAdapter(tasks);
+
+        recyclerView = rootView.findViewById(R.id.task_list_recycler_view);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setAdapter(adapter);
+
 
         return rootView;
     }

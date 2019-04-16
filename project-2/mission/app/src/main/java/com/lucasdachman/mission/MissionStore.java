@@ -13,7 +13,14 @@ public class MissionStore {
 
     private  MissionStore() {
         missions = new ArrayList<Mission>();
+        setUpDummyData();
+    }
 
+    public ArrayList<Mission> getMissions() {
+        return missions;
+    }
+
+    public void setUpDummyData() {
         Mission m1 = new Mission("Mission 1");
         m1.addTask("Task 1, Mission 1");
         m1.addTask("Task 2, Mission 1");
@@ -28,9 +35,7 @@ public class MissionStore {
         missions.add(new Mission("Mission Three"));
     }
 
-    public ArrayList<Mission> getMissions() {
-        return missions;
-    }
+    // Static Functions
 
     public static MissionStore getInstance() {
         if (instance == null) {

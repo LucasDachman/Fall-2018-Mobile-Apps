@@ -1,5 +1,7 @@
 package com.lucasdachman.mission;
 
+import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
@@ -19,14 +21,15 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.TaskVi
     @NonNull
     @Override
     public TaskViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        // TODO: Get the row view and pass it to the view holder
-        return new TaskViewHolder(new TextView(viewGroup.getContext()));
+        final View view = LayoutInflater.from(viewGroup.getContext()).inflate(i, viewGroup, false);
+        return new TaskViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull TaskViewHolder taskViewHolder, int i) {
-        String taskName = tasks.get(i).getName();
-        taskViewHolder.textView.setText(taskName);
+        Task task = tasks.get(i);
+        taskViewHolder.titleTextView.setText(task.getName());
+        taskViewHolder.descriptionTextView.setText(task.getDescription());
     }
 
     @Override
@@ -34,12 +37,22 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.TaskVi
         return tasks.size();
     }
 
-    public static class TaskViewHolder extends RecyclerView.ViewHolder {
-        TextView textView;
-        public TaskViewHolder(TextView v) {
-           super(v);
-           this.textView = v;
-        }
+    @Override
+    public int getItemViewType(int position) {
+        return R.layout.task_list_item;
+    }
 
+    /*
+     * View Holder Class
+     */
+
+    public static class TaskViewHolder extends RecyclerView.ViewHolder {
+        TextView titleTextView;
+        TextView descriptionTextView;
+        public TaskViewHolder(final View v) {
+           super(v);
+           this.titleTextView = v.findViewById(R.id.task_item_title);
+           this.descriptionTextView = v.findViewById(R.id.task_item_description);
+        }
     }
 }

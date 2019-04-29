@@ -2,27 +2,25 @@ package com.lucasdachman.mission;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
-class Mission implements Serializable {
+class Mission implements Serializable, Comparable<Mission> {
 
+    private String key;
     private String name;
-    private HashMap<String, Task> tasks;
+    private float order;
+    private HashMap<String, Task> tasks = new HashMap<String, Task>();
 
     public Mission() {
-        this.tasks = new HashMap<>();
         this.name = "Default";
     }
 
     public Mission(String name) {
-       this.name = name;
-       this.tasks = new HashMap<String, Task>();
-    }
-
-    public void addTask(String key, String name) {
-       tasks.put(key, new Task(name));
+        this.name = name;
     }
 
     public void addTask(String key, Task task) {
@@ -30,7 +28,9 @@ class Mission implements Serializable {
     }
 
     public ArrayList<Task> getTasksAsList() {
-        return new ArrayList(tasks.values());
+        ArrayList<Task> sorted = new ArrayList<>(tasks.values());
+        Collections.sort(sorted);
+        return sorted;
     }
 
     public Map<String, Task> getTasks() {
@@ -51,5 +51,28 @@ class Mission implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public float getOrder() {
+        return order;
+    }
+
+    public void setOrder(float order) {
+        this.order = order;
+    }
+
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
+    }
+
+    @Override
+    public int compareTo(Mission o) {
+        return this.getOrder() > o.getOrder() ? 1
+                : this.getOrder() < o.getOrder() ? -1
+                : 0;
     }
 }

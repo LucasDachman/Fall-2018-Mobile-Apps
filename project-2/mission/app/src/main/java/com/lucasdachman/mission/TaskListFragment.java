@@ -62,7 +62,7 @@ public class TaskListFragment extends Fragment {
         int position = getArguments().getInt(ARG_POSITION);
         try {
             tasks = MissionStore.getInstance().getMissionAt(position).getTasksAsList();
-        } catch (ArrayIndexOutOfBoundsException e) {
+        } catch (IndexOutOfBoundsException e) {
             tasks = new ArrayList<Task>();
         }
 
@@ -101,7 +101,7 @@ class SectionsPagerAdapter extends FragmentStatePagerAdapter {
     public CharSequence getPageTitle(int position) {
         try {
             return MissionStore.getInstance().getMissionAt(position).getName();
-        } catch(ArrayIndexOutOfBoundsException e) {
+        } catch(IndexOutOfBoundsException e) {
             return "Mission " + position;
         }
     }

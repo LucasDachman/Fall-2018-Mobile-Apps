@@ -9,36 +9,66 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 
-public class MissionStore implements ChildEventListener {
+public class MissionStore implements ValueEventListener {
     final String TAG = "MissionStore";
 
     // static members
     private static MissionStore instance;
 
     // instance members
-    private HashMap<String, Mission> missions;
+    private ArrayList<Mission> missions = new ArrayList<Mission>();
     private MissionDataChangeListener missionDataChangeListener;
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
+    DatabaseReference myRef = database.getReference("missions");
 
     private MissionStore() {
         Log.i(TAG, "New MissionStore created");
-        missions = new HashMap<String, Mission>();
-        DatabaseReference myRef = FirebaseDatabase.getInstance().getReference("missions");
-        myRef.orderByChild("name").addChildEventListener(this);
+        myRef.orderByChild("order").addValueEventListener(this);
     }
 
+    public void addDummy() {
+        this.addMission(new Mission("my mission " + new Date().toString()));
+    }
 
-    public Mission[] getMissions() {
-        return missions.values().toArray(new Mission[missions.size()]);
+    public void addMission(Mission mission) {
+        DatabaseReference newRef = myRef.push();
+        mission.setKey(newRef.getKey());
+        // order at beginning of list
+        if (missions.size() > 0) {
+            mission.setOrder(getMissionAt(0).getOrder() - 1);
+        } else {
+            mission.setOrder(0);
+        }
+        newRef.setValue(mission);
+    }
+
+    public ArrayList<Mission> getMissions() {
+        return missions;
     }
 
     public Mission getMissionAt(int index) {
-        return (Mission) missions.values().toArray()[index];
+        return missions.get(index);
+    }
+
+    public void addTask(Mission mission, Task task) {
+        String missionKey = mission.getKey();
+        if (mission.getTasksAsList().size() > 0) {
+            task.setOrder(mission.getTasksAsList().get(0).getOrder() - 1);
+        } else {
+            task.setOrder(0);
+        }
+        DatabaseReference taskListRef = database.getReferenceFromUrl(missionKey).child("tasks");
+        DatabaseReference newRef = taskListRef.push();
+        task.setKey(newRef.getKey());
+        newRef.setValue(task);
     }
 
     public void setMissionDataChangeListener(MissionDataChangeListener missionDataChangeListener) {
@@ -52,47 +82,24 @@ public class MissionStore implements ChildEventListener {
         }
     }
 
-    /*** Firebase functions ***/
-
-    /*** Child Event Listener ***/
-
     @Override
-    public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-        Log.i(TAG, "Child Added: " + dataSnapshot.getKey());
-        Mission mission = dataSnapshot.getValue(Mission.class);
-        missions.put(dataSnapshot.getKey(), mission);
-        onDataChanged();
-    }
-
-    @Override
-    public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-        Log.i(TAG, "Child Changed: " + dataSnapshot.getKey());
-        Mission mission = dataSnapshot.getValue(Mission.class);
-        missions.put(dataSnapshot.getKey(), mission);
-        onDataChanged();
-    }
-
-    @Override
-    public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
-        Log.i(TAG, "Child Removed: " + dataSnapshot.getKey());
-        missions.remove(dataSnapshot.getKey());
-        onDataChanged();
-    }
-
-    @Override
-    public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-        Log.i(TAG, "Child Moved: " + dataSnapshot.getKey());
-        onDataChanged();
-
+    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+        missions.clear();
+        for (DataSnapshot childSnapshot : dataSnapshot.getChildren()) {
+            missions.add(childSnapshot.getValue(Mission.class));
+        }
+        missionDataChangeListener.onDataChange();
     }
 
     @Override
     public void onCancelled(@NonNull DatabaseError databaseError) {
-        Log.e(TAG, "Event Listener for Missions failed: " + databaseError.toString());
+        Log.e(TAG, "Firebase connection cancelled: " + databaseError);
     }
 
-    // Static Functions
+    /*** Firebase functions ***/
 
+
+    // Static Functions
     public static MissionStore getInstance() {
         if (instance == null) {
             instance = new MissionStore();

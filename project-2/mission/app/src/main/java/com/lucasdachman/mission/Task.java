@@ -2,9 +2,11 @@ package com.lucasdachman.mission;
 
 import java.io.Serializable;
 
-class Task implements Serializable {
+class Task implements Serializable, Comparable<Task> {
+    private String key;
     private String name;
     private String description;
+    private float order;
 
     public Task() {
         this.name = "Default";
@@ -30,5 +32,28 @@ class Task implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public float getOrder() {
+        return order;
+    }
+
+    public void setOrder(float order) {
+        this.order = order;
+    }
+
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
+    }
+
+    @Override
+    public int compareTo(Task o) {
+        return this.getOrder() > o.getOrder() ? 1
+                : this.getOrder() < o.getOrder() ? -1
+                : 0;
     }
 }

@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
@@ -46,8 +47,8 @@ public class MainActivity extends AppCompatActivity implements MissionDataChange
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Toast.makeText(view.getContext(), "new mission", Toast.LENGTH_LONG);
+                MissionStore.getInstance().addDummy();
             }
         });
 

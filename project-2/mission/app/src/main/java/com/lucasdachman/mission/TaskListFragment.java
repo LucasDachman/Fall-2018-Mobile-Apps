@@ -2,10 +2,13 @@ package com.lucasdachman.mission;
 
 
 import android.os.Bundle;
+
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -57,7 +60,11 @@ public class TaskListFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_task_list, container, false);
 
         int position = getArguments().getInt(ARG_POSITION);
-        tasks = MissionStore.getInstance().getMissions().get(position).getTasks();
+        try {
+            tasks = MissionStore.getInstance().getMissionAt(position).getTasksAsList();
+        } catch (ArrayIndexOutOfBoundsException e) {
+            tasks = new ArrayList<Task>();
+        }
 
         layoutManager = new LinearLayoutManager(rootView.getContext());
         adapter = new TaskListAdapter(tasks);
@@ -73,10 +80,10 @@ public class TaskListFragment extends Fragment {
 }
 
 /**
- * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
+ * A {@link FragmentStatePagerAdapter} that returns a fragment corresponding to
  * one of the sections/tabs/pages.
  */
-class SectionsPagerAdapter extends FragmentPagerAdapter {
+class SectionsPagerAdapter extends FragmentStatePagerAdapter {
 
     public SectionsPagerAdapter(FragmentManager fm) {
         super(fm);
@@ -92,12 +99,21 @@ class SectionsPagerAdapter extends FragmentPagerAdapter {
     @Nullable
     @Override
     public CharSequence getPageTitle(int position) {
-        return MissionStore.getInstance().getMissions().get(position).getName();
+        try {
+            return MissionStore.getInstance().getMissionAt(position).getName();
+        } catch(ArrayIndexOutOfBoundsException e) {
+            return "Mission " + position;
+        }
     }
 
     @Override
     public int getCount() {
         // Show 3 total pages.
         return 3;
+    }
+
+    @Override
+    public int getItemPosition(@NonNull Object object) {
+        return POSITION_NONE;
     }
 }

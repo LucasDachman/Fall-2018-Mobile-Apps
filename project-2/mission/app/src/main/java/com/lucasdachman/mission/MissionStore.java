@@ -1,38 +1,94 @@
 package com.lucasdachman.mission;
 
-import java.util.ArrayList;
+import android.util.Log;
 
-public class MissionStore {
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.HashMap;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
+
+public class MissionStore implements ChildEventListener {
+    final String TAG = "MissionStore";
 
     // static members
     private static MissionStore instance;
 
     // instance members
-    private ArrayList<Mission> missions;
+    private HashMap<String, Mission> missions;
+    private MissionDataChangeListener missionDataChangeListener;
 
-
-    private  MissionStore() {
-        missions = new ArrayList<Mission>();
-        setUpDummyData();
+    private MissionStore() {
+        Log.i(TAG, "New MissionStore created");
+        missions = new HashMap<String, Mission>();
+        DatabaseReference myRef = FirebaseDatabase.getInstance().getReference("missions");
+        myRef.orderByChild("name").addChildEventListener(this);
     }
 
-    public ArrayList<Mission> getMissions() {
-        return missions;
+
+    public Mission[] getMissions() {
+        return missions.values().toArray(new Mission[missions.size()]);
     }
 
-    public void setUpDummyData() {
-        Mission m1 = new Mission("Mission 1");
-        m1.addTask("Task 1, Mission 1");
-        m1.addTask("Task 2, Mission 1");
+    public Mission getMissionAt(int index) {
+        return (Mission) missions.values().toArray()[index];
+    }
 
-        Mission m2 = new Mission("Mission 2");
-        m2.addTask("Task 1, Mission 2");
-        m2.addTask("Task 2, Mission 2");
-        m2.addTask("Task 3, Mission 2");
+    public void setMissionDataChangeListener(MissionDataChangeListener missionDataChangeListener) {
+        this.missionDataChangeListener = missionDataChangeListener;
+    }
 
-        missions.add(m1);
-        missions.add(m2);
-        missions.add(new Mission("Mission Three"));
+    // invoke interface method onChange
+    private void onDataChanged() {
+        if (missionDataChangeListener != null) {
+            missionDataChangeListener.onDataChange();
+        }
+    }
+
+    /*** Firebase functions ***/
+
+    /*** Child Event Listener ***/
+
+    @Override
+    public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+        Log.i(TAG, "Child Added: " + dataSnapshot.getKey());
+        Mission mission = dataSnapshot.getValue(Mission.class);
+        missions.put(dataSnapshot.getKey(), mission);
+        onDataChanged();
+    }
+
+    @Override
+    public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+        Log.i(TAG, "Child Changed: " + dataSnapshot.getKey());
+        Mission mission = dataSnapshot.getValue(Mission.class);
+        missions.put(dataSnapshot.getKey(), mission);
+        onDataChanged();
+    }
+
+    @Override
+    public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+        Log.i(TAG, "Child Removed: " + dataSnapshot.getKey());
+        missions.remove(dataSnapshot.getKey());
+        onDataChanged();
+    }
+
+    @Override
+    public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+        Log.i(TAG, "Child Moved: " + dataSnapshot.getKey());
+        onDataChanged();
+
+    }
+
+    @Override
+    public void onCancelled(@NonNull DatabaseError databaseError) {
+        Log.e(TAG, "Event Listener for Missions failed: " + databaseError.toString());
     }
 
     // Static Functions
@@ -41,6 +97,6 @@ public class MissionStore {
         if (instance == null) {
             instance = new MissionStore();
         }
-        return  instance;
+        return instance;
     }
 }

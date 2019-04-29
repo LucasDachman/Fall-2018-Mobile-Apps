@@ -1,8 +1,15 @@
 package com.lucasdachman.mission;
 
-class Task {
+import java.io.Serializable;
+
+class Task implements Serializable {
     private String name;
     private String description;
+
+    public Task() {
+        this.name = "Default";
+        this.description = "Default";
+    }
 
     public Task(String name) {
         this.name = name;
@@ -19,5 +26,9 @@ class Task {
 
     public String getName() {
         return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

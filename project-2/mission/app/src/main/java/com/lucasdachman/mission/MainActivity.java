@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.widget.Toolbar;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -12,8 +13,9 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.tabs.TabLayout;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements MissionDataChangeListener {
 
+    private final String TAG = "MainActivity";
     private SectionsPagerAdapter mSectionsPagerAdapter;
 
     /**
@@ -35,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
         // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
+        MissionStore.getInstance().setMissionDataChangeListener(this);
 
         TabLayout tabLayout = findViewById(R.id.tabLayout);
         tabLayout.setupWithViewPager(mViewPager, true);
@@ -72,4 +75,12 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    // Interface method for MissionDataChanged
+    @Override
+    public void onDataChange() {
+        Log.i(TAG, "onDataChange");
+        mSectionsPagerAdapter.notifyDataSetChanged();
+    }
+
 }

@@ -8,11 +8,10 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
-class Mission implements Serializable, Comparable<Mission> {
+class Mission extends Orderable implements Serializable {
 
     private String key;
     private String name;
-    private float order;
     private HashMap<String, Task> tasks = new HashMap<String, Task>();
 
     public Mission() {
@@ -53,26 +52,11 @@ class Mission implements Serializable, Comparable<Mission> {
         this.name = name;
     }
 
-    public float getOrder() {
-        return order;
-    }
-
-    public void setOrder(float order) {
-        this.order = order;
-    }
-
     public String getKey() {
         return key;
     }
 
     public void setKey(String key) {
         this.key = key;
-    }
-
-    @Override
-    public int compareTo(Mission o) {
-        return this.getOrder() > o.getOrder() ? 1
-                : this.getOrder() < o.getOrder() ? -1
-                : 0;
     }
 }

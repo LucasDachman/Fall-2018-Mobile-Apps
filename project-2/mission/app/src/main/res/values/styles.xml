@@ -69,15 +69,21 @@
         <!--<item name="android:windowEnterAnimation">@anim/slide_up</item>-->
         <!--<item name="android:windowExitAnimation">@anim/slide_down</item>-->
     </style>
-    <style name="Theme.Mission.spinner_style">
-        <item name="android:layout_width">match_parent</item>
+    <style name="Theme.Mission.spinner_style" parent="Widget.AppCompat.Spinner">
+        <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:background">@drawable/border</item>
-        <item name="android:layout_margin">10dp</item>
+        <item name="android:background">@drawable/spinner_border</item>
         <item name="android:paddingLeft">8dp</item>
         <item name="android:paddingRight">20dp</item>
         <item name="android:paddingTop">5dp</item>
         <item name="android:paddingBottom">5dp</item>
         <item name="android:popupBackground">#DFFFFFFF</item>
+    </style>
+
+    <style name="Theme.Mission.TextOutlinedBox" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <!--<item name="android:textColorHint">@color/colorAccent</item>-->
+        <item name="android:layout_marginStart">24dp</item>
+        <item name="android:layout_marginTop">32dp</item>
+        <item name="android:layout_marginEnd">24dp</item>
     </style>
 </resources>

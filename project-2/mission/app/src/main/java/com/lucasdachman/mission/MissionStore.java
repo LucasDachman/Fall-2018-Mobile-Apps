@@ -24,11 +24,11 @@ public class MissionStore implements ValueEventListener {
     private ArrayList<Mission> missions = new ArrayList<Mission>();
     private MissionDataChangeListener missionDataChangeListener;
     FirebaseDatabase database = FirebaseDatabase.getInstance();
-    DatabaseReference myRef = database.getReference("missions");
+    DatabaseReference missionsRef = database.getReference("missions");
 
     private MissionStore() {
         Log.i(TAG, "New MissionStore created");
-        myRef.orderByChild("order").addValueEventListener(this);
+        missionsRef.orderByChild("order").addValueEventListener(this);
     }
 
     public void addDummy() {
@@ -36,14 +36,17 @@ public class MissionStore implements ValueEventListener {
     }
 
     public void addMission(Mission mission) {
-        DatabaseReference newRef = myRef.push();
+
+        // find db position where to put task
+        DatabaseReference newRef = missionsRef.push();
+
+        // put the mission at the beginning by setting the order
+        Orderable.setOrder(mission, getMissions());
+
+        // set the key to the reference to this mission in the db
         mission.setKey(newRef.getKey());
-        // order at beginning of list
-        if (missions.size() > 0) {
-            mission.setOrder(getMissionAt(0).getOrder() - 1);
-        } else {
-            mission.setOrder(0);
-        }
+
+        // set the value in the db
         newRef.setValue(mission);
     }
 
@@ -56,15 +59,19 @@ public class MissionStore implements ValueEventListener {
     }
 
     public void addTask(Mission mission, Task task) {
+
+        // find db position where to put task
         String missionKey = mission.getKey();
-        if (mission.getTasksAsList().size() > 0) {
-            task.setOrder(mission.getTasksAsList().get(0).getOrder() - 1);
-        } else {
-            task.setOrder(0);
-        }
-        DatabaseReference taskListRef = database.getReferenceFromUrl(missionKey).child("tasks");
-        DatabaseReference newRef = taskListRef.push();
+        DatabaseReference missionRef = missionsRef.child(missionKey);
+        DatabaseReference newRef = missionRef.child("tasks").push();
+
+        // put the task at the beginning by setting the order
+        Orderable.setOrder(task, mission.getTasksAsList());
+
+        // set the key to the reference to this task in the db
         task.setKey(newRef.getKey());
+
+        // set the value in the db
         newRef.setValue(task);
     }
 

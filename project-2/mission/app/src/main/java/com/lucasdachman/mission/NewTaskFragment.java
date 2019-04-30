@@ -1,8 +1,10 @@
 package com.lucasdachman.mission;
 
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,11 +14,22 @@ import androidx.annotation.Nullable;
 
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.SpinnerAdapter;
 import android.widget.Toolbar;
 import android.app.DialogFragment;
 
+import com.google.android.material.textfield.TextInputEditText;
+
+import java.util.ArrayList;
+
 public class NewTaskFragment extends DialogFragment implements View.OnClickListener {
     public static final String TAG = "NewTaskDialog";
+
+    // UI Elements
+    Spinner labelSpinner;
+    Spinner missionSpinner;
+    TextInputEditText titleEditText;
+    TextInputEditText descriptionEditText;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -35,19 +48,35 @@ public class NewTaskFragment extends DialogFragment implements View.OnClickListe
         toolbar.setTitle("New Task");
         toolbar.setTitleTextColor(Color.WHITE);
 
-        Spinner labelSpinner = view.findViewById(R.id.new_task_label_spinner);
-        ArrayAdapter labelSpinnerAdapter = ArrayAdapter.createFromResource(view.getContext(), R.array.labels, R.layout.support_simple_spinner_dropdown_item);
+        labelSpinner = view.findViewById(R.id.new_task_label_spinner);
+        ArrayAdapter labelSpinnerAdapter = new ArrayAdapter(view.getContext(), R.layout.support_simple_spinner_dropdown_item);
         labelSpinnerAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
+        labelSpinnerAdapter.add("Label 1");
+        labelSpinnerAdapter.add("Label 2");
         labelSpinner.setAdapter(labelSpinnerAdapter);
 
-        Spinner missionSpinner = view.findViewById(R.id.new_task_mission_spinner);
-        ArrayAdapter missionSpinnerAdapter = new ArrayAdapter(view.getContext(), R.layout.support_simple_spinner_dropdown_item);
+        missionSpinner = view.findViewById(R.id.new_task_mission_spinner);
+        ArrayAdapter missionSpinnerAdapter = new MissionArrayAdapter(view.getContext(), R.layout.support_simple_spinner_dropdown_item, MissionStore.getInstance().getMissions());
         missionSpinnerAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
-        missionSpinnerAdapter.add("Mission 1");
-        missionSpinnerAdapter.add("Mission 2");
         missionSpinner.setAdapter(missionSpinnerAdapter);
 
+        titleEditText = view.findViewById(R.id.new_task_title_input);
+        descriptionEditText = view.findViewById(R.id.new_task_description_input);
+
         return view;
+    }
+
+    @Override
+    public void onDismiss(DialogInterface dialog) {
+        super.onDismiss(dialog);
+        String title = titleEditText.getText().toString();
+        String description = descriptionEditText.getText().toString();
+        Mission mission = (Mission) missionSpinner.getSelectedItem();
+        Log.i(TAG, "Mission: " + mission.getName() + " " + mission.getKey());
+        if ( !title.isEmpty() && !description.isEmpty() ) {
+            Task task = new Task(title, description);
+            MissionStore.getInstance().addTask(mission, task);
+        }
     }
 
     @Override

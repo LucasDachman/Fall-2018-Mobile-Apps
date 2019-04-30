@@ -3,6 +3,8 @@ package com.lucasdachman.mission;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.widget.Toolbar;
+
+import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -11,7 +13,6 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.tabs.TabLayout;
 
 public class MainActivity extends AppCompatActivity implements MissionDataChangeListener {
@@ -47,8 +48,10 @@ public class MainActivity extends AppCompatActivity implements MissionDataChange
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(view.getContext(), "new mission", Toast.LENGTH_LONG);
-                MissionStore.getInstance().addDummy();
+//                MissionStore.getInstance().addDummy();
+                NewTaskFragment newTaskFragment = NewTaskFragment.newInstance();
+                FragmentTransaction ft = getFragmentManager().beginTransaction();
+                newTaskFragment.show(ft, NewTaskFragment.TAG);
             }
         });
 

@@ -30,7 +30,6 @@ public class TaskListFragment extends Fragment {
     private RecyclerView recyclerView;
     private RecyclerView.LayoutManager layoutManager;
     private RecyclerView.Adapter adapter;
-    private ArrayList<Task> tasks;
 
     public TaskListFragment() {
     }
@@ -59,14 +58,15 @@ public class TaskListFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_task_list, container, false);
 
         int position = getArguments().getInt(ARG_POSITION);
+        Mission currentMission;
         try {
-            tasks = MissionStore.getInstance().getMissionAt(position).getTasksAsList();
+            currentMission = MissionStore.getInstance().getMissionAt(position);
         } catch (IndexOutOfBoundsException e) {
-            tasks = new ArrayList<Task>();
+            currentMission = new Mission();
         }
 
         layoutManager = new LinearLayoutManager(rootView.getContext());
-        adapter = new TaskListAdapter(tasks);
+        adapter = new TaskListAdapter(currentMission);
 
         recyclerView = rootView.findViewById(R.id.task_list_recycler_view);
         recyclerView.setHasFixedSize(true);

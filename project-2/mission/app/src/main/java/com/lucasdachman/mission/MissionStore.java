@@ -24,21 +24,18 @@ public class MissionStore implements ValueEventListener {
     private ArrayList<Mission> missions = new ArrayList<Mission>();
     private MissionDataChangeListener missionDataChangeListener;
     FirebaseDatabase database = FirebaseDatabase.getInstance();
-    DatabaseReference missionsRef = database.getReference("missions");
+    DatabaseReference missionsListRef = database.getReference("missions");
 
     private MissionStore() {
         Log.i(TAG, "New MissionStore created");
-        missionsRef.orderByChild("order").addValueEventListener(this);
-    }
-
-    public void addDummy() {
-        this.addMission(new Mission("my mission " + new Date().toString()));
+        missionsListRef.orderByChild("order").addValueEventListener(this);
     }
 
     public void addMission(Mission mission) {
+        Log.i(TAG, "Adding new mission: " + mission.getName());
 
         // find db position where to put task
-        DatabaseReference newRef = missionsRef.push();
+        DatabaseReference newRef = missionsListRef.push();
 
         // put the mission at the beginning by setting the order
         Orderable.setOrder(mission, getMissions());
@@ -59,10 +56,11 @@ public class MissionStore implements ValueEventListener {
     }
 
     public void addTask(Mission mission, Task task) {
+        Log.i(TAG, "Adding new task: " + task.getName());
 
         // find db position where to put task
         String missionKey = mission.getKey();
-        DatabaseReference missionRef = missionsRef.child(missionKey);
+        DatabaseReference missionRef = missionsListRef.child(missionKey);
         DatabaseReference newRef = missionRef.child("tasks").push();
 
         // put the task at the beginning by setting the order
@@ -73,6 +71,13 @@ public class MissionStore implements ValueEventListener {
 
         // set the value in the db
         newRef.setValue(task);
+    }
+
+    public void deleteTask(Mission mission, Task task) {
+        Log.i(TAG, "Deleting Task: " + task.getName());
+        String missionKey = mission.getKey();
+        String taskKey = task.getKey();
+        missionsListRef.child(missionKey).child("tasks").child(taskKey).removeValue();
     }
 
     public void setMissionDataChangeListener(MissionDataChangeListener missionDataChangeListener) {

@@ -1,6 +1,8 @@
 package com.lucasdachman.mission;
 
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -13,10 +15,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.TaskViewHolder> {
     private ArrayList<Task> tasks;
+    private Mission mission;
 
-    public TaskListAdapter(ArrayList<Task> tasks) {
-       super();
-       this.tasks = tasks;
+    public TaskListAdapter(Mission mission) {
+        super();
+        this.tasks = mission.getTasksAsList();
+        this.mission = mission;
     }
 
     @NonNull
@@ -28,9 +32,21 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.TaskVi
 
     @Override
     public void onBindViewHolder(@NonNull TaskViewHolder taskViewHolder, int i) {
-        Task task = tasks.get(i);
+        final Task task = tasks.get(i);
         taskViewHolder.titleTextView.setText(task.getName());
         taskViewHolder.descriptionTextView.setText(task.getDescription());
+        taskViewHolder.itemView.setOnCreateContextMenuListener(new View.OnCreateContextMenuListener() {
+            @Override
+            public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+                menu.add("Delete").setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+                        MissionStore.getInstance().deleteTask(mission, task);
+                        return false;
+                    }
+                });
+            }
+        });
     }
 
     @Override
@@ -50,10 +66,11 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.TaskVi
     public static class TaskViewHolder extends RecyclerView.ViewHolder {
         TextView titleTextView;
         TextView descriptionTextView;
+
         public TaskViewHolder(final View v) {
-           super(v);
-           this.titleTextView = v.findViewById(R.id.task_item_title);
-           this.descriptionTextView = v.findViewById(R.id.task_item_description);
+            super(v);
+            this.titleTextView = v.findViewById(R.id.task_item_title);
+            this.descriptionTextView = v.findViewById(R.id.task_item_description);
         }
     }
 }

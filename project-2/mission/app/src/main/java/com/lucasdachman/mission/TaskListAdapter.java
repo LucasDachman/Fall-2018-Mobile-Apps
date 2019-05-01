@@ -41,6 +41,7 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.TaskVi
         final Task task = tasks.get(i);
         taskViewHolder.titleTextView.setText(task.getName());
         taskViewHolder.descriptionTextView.setText(task.getDescription());
+
         taskViewHolder.itemView.setOnCreateContextMenuListener(new View.OnCreateContextMenuListener() {
             @Override
             public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
@@ -60,6 +61,15 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.TaskVi
                         return false;
                     }
                 });
+            }
+        });
+
+        taskViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                EditTaskFragment frag = EditTaskFragment.newEditInstance(mission, task);
+                FragmentTransaction ft = fragmentManager.beginTransaction();
+                frag.show(ft, TAG);
             }
         });
     }

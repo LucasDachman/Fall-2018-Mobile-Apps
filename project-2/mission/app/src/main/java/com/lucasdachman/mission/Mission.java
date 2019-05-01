@@ -1,5 +1,7 @@
 package com.lucasdachman.mission;
 
+import androidx.annotation.NonNull;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -58,5 +60,11 @@ class Mission extends Orderable implements Serializable {
 
     public void setKey(String key) {
         this.key = key;
+    }
+
+    @NonNull
+    @Override
+    public String toString() {
+        return getName();
     }
 }

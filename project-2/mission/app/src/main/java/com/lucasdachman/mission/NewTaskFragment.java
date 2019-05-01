@@ -1,3 +1,8 @@
+/*
+ * Full screen dialog based on implementation found here: https://medium.com/@haxzie/android-full-screen-dialogs-using-dialogfragment-usage-guide-8fd3cc2cabf8
+ */
+
+
 package com.lucasdachman.mission;
 
 import android.app.Dialog;
@@ -6,6 +11,9 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -18,11 +26,14 @@ import android.widget.SpinnerAdapter;
 import android.widget.Toolbar;
 import android.app.DialogFragment;
 
+import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.textfield.TextInputEditText;
+import com.lucasdachman.mission.R;
 
 import java.util.ArrayList;
 
-public class NewTaskFragment extends DialogFragment implements View.OnClickListener {
+
+public class NewTaskFragment extends DialogFragment implements View.OnClickListener, Toolbar.OnMenuItemClickListener {
     public static final String TAG = "NewTaskDialog";
 
     // UI Elements
@@ -46,7 +57,9 @@ public class NewTaskFragment extends DialogFragment implements View.OnClickListe
         Toolbar toolbar = view.findViewById(R.id.new_task_toolbar);
         toolbar.setNavigationOnClickListener(this);
         toolbar.setTitle("New Task");
-        toolbar.setTitleTextColor(Color.WHITE);
+        toolbar.setNavigationIcon(R.drawable.ic_baseline_close_24px);
+        toolbar.setOnMenuItemClickListener(this);
+        toolbar.inflateMenu(R.menu.menu_new_task);
 
         labelSpinner = view.findViewById(R.id.new_task_label_spinner);
         ArrayAdapter labelSpinnerAdapter = new ArrayAdapter(view.getContext(), R.layout.support_simple_spinner_dropdown_item);
@@ -56,9 +69,10 @@ public class NewTaskFragment extends DialogFragment implements View.OnClickListe
         labelSpinner.setAdapter(labelSpinnerAdapter);
 
         missionSpinner = view.findViewById(R.id.new_task_mission_spinner);
-        ArrayAdapter missionSpinnerAdapter = new MissionArrayAdapter(view.getContext(), R.layout.support_simple_spinner_dropdown_item, MissionStore.getInstance().getMissions());
+        ArrayAdapter missionSpinnerAdapter = new ArrayAdapter(view.getContext(), R.layout.support_simple_spinner_dropdown_item, MissionStore.getInstance().getMissions());
         missionSpinnerAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
         missionSpinner.setAdapter(missionSpinnerAdapter);
+        missionSpinner.setSelection(getArguments().getInt(CURRENT_MISSION_INDEX));
 
         titleEditText = view.findViewById(R.id.new_task_title_input);
         descriptionEditText = view.findViewById(R.id.new_task_description_input);
@@ -66,14 +80,16 @@ public class NewTaskFragment extends DialogFragment implements View.OnClickListe
         return view;
     }
 
-    @Override
-    public void onDismiss(DialogInterface dialog) {
-        super.onDismiss(dialog);
+    private void uploadTask() {
+        Mission mission = (Mission) missionSpinner.getSelectedItem();
         String title = titleEditText.getText().toString();
         String description = descriptionEditText.getText().toString();
-        Mission mission = (Mission) missionSpinner.getSelectedItem();
-        Log.i(TAG, "Mission: " + mission.getName() + " " + mission.getKey());
+        if (mission == null) {
+            Log.w(TAG, "Warning: attempt to upload null Mission");
+            return;
+        }
         if ( !title.isEmpty() && !description.isEmpty() ) {
+            Log.i(TAG, "Uploading task for mission: " + mission.getName() + " " + mission.getKey());
             Task task = new Task(title, description);
             MissionStore.getInstance().addTask(mission, task);
         }
@@ -82,25 +98,39 @@ public class NewTaskFragment extends DialogFragment implements View.OnClickListe
     @Override
     public void onStart() {
         super.onStart();
-
         Dialog dialog = getDialog();
         if (dialog != null) {
             int width = ViewGroup.LayoutParams.MATCH_PARENT;
             int height = ViewGroup.LayoutParams.MATCH_PARENT;
             dialog.getWindow().setLayout(width, height);
-
         }
     }
 
-    /* View.OnClickListener */
+    /* Navigation View.OnClickListener */
     @Override
     public void onClick(View v) {
         dismiss();
     }
 
+    @Override
+    public boolean onMenuItemClick(MenuItem item) {
+        if (item.getItemId() == R.id.new_task_save_item) {
+            uploadTask();
+            dismiss();
+        }
+        return true;
+    }
+
     /* static methods */
 
-    public static NewTaskFragment newInstance() {
-        return new NewTaskFragment();
+    public static final String CURRENT_MISSION_INDEX = "key idx";
+
+    public static NewTaskFragment newInstance(int missionIndex) {
+        NewTaskFragment frag = new NewTaskFragment();
+        Bundle args = new Bundle();
+        args.putInt(CURRENT_MISSION_INDEX, missionIndex);
+        frag.setArguments(args);
+        return frag;
     }
+
 }

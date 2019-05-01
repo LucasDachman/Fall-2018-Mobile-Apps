@@ -3,10 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    style="@style/Theme.Mission">
 
     <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/appBarLayout"
+        android:id="@+id/new_task_app_bar_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
@@ -15,6 +16,8 @@
 
         <Toolbar
             android:id="@+id/new_task_toolbar"
+            android:background="@color/colorAccent"
+            android:titleTextColor="@color/white"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:titleTextAppearance="@style/TextAppearance.MaterialComponents.Headline5" />
@@ -29,7 +32,7 @@
         android:hint="Title"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/appBarLayout">
+        app:layout_constraintTop_toBottomOf="@+id/new_task_app_bar_layout">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/new_task_title_input"

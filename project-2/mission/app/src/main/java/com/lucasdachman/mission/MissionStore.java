@@ -88,11 +88,12 @@ public class MissionStore implements ValueEventListener {
 
     @Override
     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+        Log.i(TAG, "onDataChange Firebase");
         missions.clear();
         for (DataSnapshot childSnapshot : dataSnapshot.getChildren()) {
             missions.add(childSnapshot.getValue(Mission.class));
         }
-        missionDataChangeListener.onDataChange();
+        onDataChanged();
     }
 
     @Override

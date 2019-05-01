@@ -41,14 +41,13 @@
         <item name="textAppearanceCaption">@style/TextAppearance.MaterialComponents.Caption</item>
         <item name="textAppearanceButton">@style/TextAppearance.MaterialComponents.Button</item>
         <item name="textAppearanceOverline">@style/TextAppearance.MaterialComponents.Overline</item>
-
     </style>
 
     <style name="Theme.Mission.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
-
+    
     <style name="Theme.Mission.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="Theme.Mission.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
@@ -58,7 +57,7 @@
 
         <!-- Set this to true if you want Full Screen without status bar -->
         <item name="android:windowFullscreen">false</item>
-            
+
 
         <item name="android:windowIsFloating">false</item>
 
@@ -69,6 +68,7 @@
         <!--<item name="android:windowEnterAnimation">@anim/slide_up</item>-->
         <!--<item name="android:windowExitAnimation">@anim/slide_down</item>-->
     </style>
+
     <style name="Theme.Mission.spinner_style" parent="Widget.AppCompat.Spinner">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">wrap_content</item>

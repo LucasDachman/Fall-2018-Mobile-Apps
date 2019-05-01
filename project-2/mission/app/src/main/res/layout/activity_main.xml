@@ -12,16 +12,14 @@
         android:id="@+id/appbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="@dimen/appbar_padding_top"
         android:theme="@style/Theme.Mission.AppBarOverlay">
 
         <androidx.appcompat.widget.Toolbar
-
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:layout_weight="1"
-            android:background="?attr/colorPrimary"
+            android:background="@color/colorAccent"
             app:layout_scrollFlags="scroll|enterAlways"
             app:popupTheme="@style/Theme.Mission.PopupOverlay"
             app:title="@string/app_name">
@@ -56,6 +54,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="end|bottom"
         android:layout_margin="@dimen/fab_margin"
+        android:pointerIcon="crosshair"
         app:srcCompat="@android:drawable/ic_dialog_email" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

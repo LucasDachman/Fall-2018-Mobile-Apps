@@ -40,23 +40,25 @@ public class MainActivity extends AppCompatActivity implements MissionDataChange
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
         MissionStore.getInstance().setMissionDataChangeListener(this);
+        onDataChange();
 
         TabLayout tabLayout = findViewById(R.id.tabLayout);
         tabLayout.setupWithViewPager(mViewPager, true);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setBackgroundColor(getResources().getColor(R.color.colorAccent));
+        fab.setImageResource(R.drawable.ic_baseline_add_24px);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 //                MissionStore.getInstance().addDummy();
-                NewTaskFragment newTaskFragment = NewTaskFragment.newInstance();
+                NewTaskFragment newTaskFragment = NewTaskFragment.newInstance(mViewPager.getCurrentItem());
                 FragmentTransaction ft = getFragmentManager().beginTransaction();
                 newTaskFragment.show(ft, NewTaskFragment.TAG);
             }
         });
 
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

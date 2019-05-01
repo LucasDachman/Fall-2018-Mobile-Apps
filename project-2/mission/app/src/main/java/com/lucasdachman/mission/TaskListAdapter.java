@@ -1,5 +1,6 @@
 package com.lucasdachman.mission;
 
+import android.content.Context;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -11,16 +12,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.TaskViewHolder> {
+    public static final String TAG = "TaskListAdapter";
     private ArrayList<Task> tasks;
     private Mission mission;
+    private FragmentManager fragmentManager;
 
-    public TaskListAdapter(Mission mission) {
+    public TaskListAdapter(FragmentManager fragmentManager, Mission mission) {
         super();
         this.tasks = mission.getTasksAsList();
         this.mission = mission;
+        this.fragmentManager = fragmentManager;
     }
 
     @NonNull
@@ -31,7 +37,7 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.TaskVi
     }
 
     @Override
-    public void onBindViewHolder(@NonNull TaskViewHolder taskViewHolder, int i) {
+    public void onBindViewHolder(@NonNull final TaskViewHolder taskViewHolder, int i) {
         final Task task = tasks.get(i);
         taskViewHolder.titleTextView.setText(task.getName());
         taskViewHolder.descriptionTextView.setText(task.getDescription());
@@ -42,6 +48,15 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.TaskVi
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
                         MissionStore.getInstance().deleteTask(mission, task);
+                        return false;
+                    }
+                });
+                menu.add("Edit").setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+                        EditTaskFragment frag = EditTaskFragment.newEditInstance(mission, task);
+                        FragmentTransaction ft = fragmentManager.beginTransaction();
+                        frag.show(ft, TAG);
                         return false;
                     }
                 });

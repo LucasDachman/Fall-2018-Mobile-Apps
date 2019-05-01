@@ -66,7 +66,7 @@ public class TaskListFragment extends Fragment {
         }
 
         layoutManager = new LinearLayoutManager(rootView.getContext());
-        adapter = new TaskListAdapter(currentMission);
+        adapter = new TaskListAdapter(getFragmentManager(), currentMission);
 
         recyclerView = rootView.findViewById(R.id.task_list_recycler_view);
         recyclerView.setHasFixedSize(true);

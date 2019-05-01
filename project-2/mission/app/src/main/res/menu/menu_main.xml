@@ -3,8 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.lucasdachman.mission.MainActivity">
     <item
-        android:id="@+id/action_settings"
+        android:id="@+id/main_action_manage_missions"
         android:orderInCategory="100"
-        android:title="@string/action_settings"
+        android:title="Manage Missions"
         app:showAsAction="never" />
 </menu>

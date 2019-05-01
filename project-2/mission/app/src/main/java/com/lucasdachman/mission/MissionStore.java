@@ -80,6 +80,13 @@ public class MissionStore implements ValueEventListener {
         missionsListRef.child(missionKey).child("tasks").child(taskKey).removeValue();
     }
 
+    public void updateTask(Mission mission, Task task) {
+        Log.i(TAG, "Updating Task: " + task.getName());
+        String missionKey = mission.getKey();
+        String taskKey = task.getKey();
+        missionsListRef.child(missionKey).child("tasks").child(taskKey).setValue(task);
+    }
+
     public void setMissionDataChangeListener(MissionDataChangeListener missionDataChangeListener) {
         this.missionDataChangeListener = missionDataChangeListener;
     }

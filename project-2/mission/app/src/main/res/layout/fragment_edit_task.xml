@@ -11,10 +11,7 @@
         android:id="@+id/new_task_app_bar_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:theme="@style/Theme.Mission.AppBarOverlay"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:theme="@style/Theme.Mission.AppBarOverlay">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/new_task_toolbar"

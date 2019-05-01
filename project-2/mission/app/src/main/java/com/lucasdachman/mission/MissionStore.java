@@ -89,6 +89,7 @@ public class MissionStore implements ValueEventListener {
 
     public void setMissionDataChangeListener(MissionDataChangeListener missionDataChangeListener) {
         this.missionDataChangeListener = missionDataChangeListener;
+        onDataChanged();
     }
 
     // invoke interface method onChange

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:clipToPadding="false"
+    android:orientation="horizontal"
+    android:padding="15dp"
+    android:theme="@style/Theme.Mission">
+
+    <TextView
+        android:id="@+id/mission_item_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/item_number_bg"
+        android:includeFontPadding="true"
+        android:text="1"
+        android:gravity="center_vertical"
+        android:textColor="@color/colorPrimaryDark"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
+        android:textAlignment="center" />
+
+    <TextView
+        android:id="@+id/mission_item_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:gravity="center_vertical"
+        android:textAppearance="@style/Theme.Mission.MissionItemText" />
+
+
+</LinearLayout>

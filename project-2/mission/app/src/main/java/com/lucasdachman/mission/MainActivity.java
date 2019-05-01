@@ -14,7 +14,7 @@ import android.view.View;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
 
-public class MainActivity extends AppCompatActivity implements MissionDataChangeListener {
+public class MainActivity extends AppCompatActivity implements MissionDataChangeListener, Toolbar.OnMenuItemClickListener {
 
     private final String TAG = "MainActivity";
     private SectionsPagerAdapter mSectionsPagerAdapter;
@@ -29,8 +29,9 @@ public class MainActivity extends AppCompatActivity implements MissionDataChange
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_main);
         setSupportActionBar(toolbar);
+        toolbar.setOnMenuItemClickListener(this);
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
@@ -39,7 +40,6 @@ public class MainActivity extends AppCompatActivity implements MissionDataChange
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
         MissionStore.getInstance().setMissionDataChangeListener(this);
-        onDataChange();
 
         TabLayout tabLayout = findViewById(R.id.tabLayout);
         tabLayout.setupWithViewPager(mViewPager, true);
@@ -83,4 +83,12 @@ public class MainActivity extends AppCompatActivity implements MissionDataChange
         mSectionsPagerAdapter.notifyDataSetChanged();
     }
 
+    /* Toolbar menu item */
+    @Override
+    public boolean onMenuItemClick(MenuItem item) {
+        ManageMissionsViewFragment manageMissionsViewFragment = new ManageMissionsViewFragment();
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        manageMissionsViewFragment.show(ft, TAG);
+        return true;
+    }
 }

@@ -47,7 +47,11 @@
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
-    
+
+    <style name="Theme.Mission.MissionItemText" parent="@style/TextAppearance.MaterialComponents.Body1">
+        <item name="android:textSize">20sp</item>
+    </style>
+
     <style name="Theme.Mission.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="Theme.Mission.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />

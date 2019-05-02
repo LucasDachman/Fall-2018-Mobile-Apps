@@ -5,8 +5,6 @@ import android.content.Context;
 import android.os.Bundle;
 
 import androidx.fragment.app.DialogFragment;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -15,10 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import androidx.appcompat.widget.Toolbar;
 
-import com.lucasdachman.mission.dummy.DummyContent;
-import com.lucasdachman.mission.dummy.DummyContent.DummyItem;
-
-import java.util.List;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 /**
  * A fragment representing a list of Items.
@@ -37,12 +32,13 @@ public class ManageMissionsViewFragment extends DialogFragment implements View.O
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setStyle(androidx.fragment.app.DialogFragment.STYLE_NORMAL, R.style.Theme_Mission_FullScreenDialogStyle);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_manage_missions_list, container, false);
+        View view = inflater.inflate(R.layout.fragment_manage_missions, container, false);
 
         // Set the adapter
         Context context = view.getContext();
@@ -53,6 +49,15 @@ public class ManageMissionsViewFragment extends DialogFragment implements View.O
         Toolbar toolbar = view.findViewById(R.id.manage_missions_toolbar);
         toolbar.setNavigationIcon(R.drawable.ic_baseline_close_24px);
         toolbar.setNavigationOnClickListener(this);
+
+        FloatingActionButton fab = view.findViewById(R.id.manage_missions_new_button);
+        fab.setImageResource(R.drawable.ic_baseline_add_24px);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // TODO: edit mission dialog
+            }
+        });
 
         return view;
     }

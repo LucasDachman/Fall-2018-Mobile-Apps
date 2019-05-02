@@ -46,7 +46,11 @@ public class ManageMissionsRecyclerViewAdapter extends RecyclerView.Adapter<Mana
         holder.mission = mission;
         final String name = mission.getName();
         holder.titleView.setText(name);
-        holder.numberView.setText(String.valueOf(position + 1));
+        if (position < 3) {
+            holder.numberView.setText(String.valueOf(position + 1));
+        } else {
+            holder.numberView.setText("");
+        }
         holder.handle.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {

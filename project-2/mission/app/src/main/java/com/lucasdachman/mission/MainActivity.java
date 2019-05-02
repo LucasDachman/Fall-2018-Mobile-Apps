@@ -14,10 +14,13 @@ import android.view.View;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
 
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity implements MissionDataChangeListener, Toolbar.OnMenuItemClickListener {
 
     private final String TAG = "MainActivity";
     private SectionsPagerAdapter mSectionsPagerAdapter;
+    private FloatingActionButton fab;
 
     /**
      * The {@link ViewPager} that will host the section contents.
@@ -44,18 +47,20 @@ public class MainActivity extends AppCompatActivity implements MissionDataChange
         TabLayout tabLayout = findViewById(R.id.tabLayout);
         tabLayout.setupWithViewPager(mViewPager, true);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setBackgroundColor(getResources().getColor(R.color.colorAccent));
         fab.setImageResource(R.drawable.ic_baseline_add_24px);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Mission currentMission = MissionStore.getInstance().getMissions().get(mViewPager.getCurrentItem());
+                if (currentMission == null) {
+                    return;
+                }
                 EditTaskFragment editTaskFragment = EditTaskFragment.newInstance(currentMission);
                 editTaskFragment.show(getSupportFragmentManager(), EditTaskFragment.TAG);
             }
         });
-
     }
 
     @Override

@@ -112,7 +112,7 @@ class SectionsPagerAdapter extends FragmentStatePagerAdapter {
         try {
             return MissionStore.getInstance().getMissionAt(position).getName();
         } catch(IndexOutOfBoundsException e) {
-            return "Mission " + position;
+            return "EMPTY";
         }
     }
 

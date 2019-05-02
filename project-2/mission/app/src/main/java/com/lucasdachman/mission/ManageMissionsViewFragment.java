@@ -21,6 +21,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class ManageMissionsViewFragment extends DialogFragment implements View.OnClickListener, MissionDataChangeListener {
 
+    private static final String TAG = "ManageMissionsViewFragment";
     private ManageMissionsRecyclerViewAdapter adapter;
 
     /**
@@ -60,6 +61,7 @@ public class ManageMissionsViewFragment extends DialogFragment implements View.O
             @Override
             public void onClick(View v) {
                 // TODO: edit mission dialog
+                new EditMissionFragment().show(getChildFragmentManager(), TAG);
             }
         });
 

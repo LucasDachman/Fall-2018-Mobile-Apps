@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -20,7 +21,7 @@ import java.util.ArrayList;
 /**
  * A view that lists tasks for a specific mission
  */
-public class TaskListFragment extends Fragment {
+public class TaskListFragment extends Fragment implements SimpleItemTouchHelperCallback.OnStartDragListener {
     /**
      * The fragment argument representing the section number for this
      * fragment.
@@ -29,7 +30,8 @@ public class TaskListFragment extends Fragment {
 
     private RecyclerView recyclerView;
     private RecyclerView.LayoutManager layoutManager;
-    private RecyclerView.Adapter adapter;
+    private TaskListAdapter adapter;
+    ItemTouchHelper touchHelper;
 
     public TaskListFragment() {
     }
@@ -66,7 +68,7 @@ public class TaskListFragment extends Fragment {
         }
 
         layoutManager = new LinearLayoutManager(rootView.getContext());
-        adapter = new TaskListAdapter(getChildFragmentManager(), currentMission);
+        adapter = new TaskListAdapter(getChildFragmentManager(), currentMission, this);
 
         recyclerView = rootView.findViewById(R.id.task_list_recycler_view);
         recyclerView.setHasFixedSize(true);
@@ -74,7 +76,16 @@ public class TaskListFragment extends Fragment {
         recyclerView.setAdapter(adapter);
         recyclerView.addItemDecoration(new DividerItemDecoration(recyclerView.getContext(), DividerItemDecoration.VERTICAL));
 
+        ItemTouchHelper.Callback callback = new SimpleItemTouchHelperCallback(adapter);
+        touchHelper = new ItemTouchHelper(callback);
+        touchHelper.attachToRecyclerView(recyclerView);
+
         return rootView;
+    }
+
+    @Override
+    public void onStartDrag(RecyclerView.ViewHolder viewHolder) {
+        touchHelper.startDrag(viewHolder);
     }
 }
 

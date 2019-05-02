@@ -4,7 +4,9 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -31,8 +33,9 @@ public class ManageMissionsRecyclerViewAdapter extends RecyclerView.Adapter<Mana
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
-        holder.mission = missionList.get(position);
-        final String name = missionList.get(position).getName();
+        final Mission mission = missionList.get(position);
+        holder.mission = mission;
+        final String name = mission.getName();
         holder.titleView.setText(name);
         holder.numberView.setText(String.valueOf(position + 1));
 
@@ -41,6 +44,19 @@ public class ManageMissionsRecyclerViewAdapter extends RecyclerView.Adapter<Mana
             public void onClick(View v) {
                 EditMissionFragment editMissionFragment = EditMissionFragment.newInstance(holder.mission);
                 editMissionFragment.show(fragmentManager, TAG);
+            }
+        });
+
+        holder.mView.setOnCreateContextMenuListener(new View.OnCreateContextMenuListener() {
+            @Override
+            public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+                menu.add("Delete").setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+                        MissionStore.getInstance().deleteMission(mission);
+                        return true;
+                    }
+                });
             }
         });
     }

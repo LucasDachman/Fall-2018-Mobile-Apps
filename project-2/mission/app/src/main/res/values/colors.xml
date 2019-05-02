@@ -6,6 +6,6 @@
     <color name="background">#FFFFFF</color>
     <color name="white">#FFFFFF</color>
     <color name="error">#F44336</color>
-    <color name="surface">#D5D5D5</color>
+    <color name="surface">#CDF1F1F1</color>
     <color name="outline">#9E9E9E</color>
 </resources>

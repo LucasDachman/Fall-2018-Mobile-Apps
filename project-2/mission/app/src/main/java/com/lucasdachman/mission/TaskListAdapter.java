@@ -7,6 +7,8 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -45,7 +47,16 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.TaskVi
         final Task task = tasks.get(i);
         taskViewHolder.titleTextView.setText(task.getName());
         taskViewHolder.descriptionTextView.setText(task.getDescription());
+        taskViewHolder.checkBox.setChecked(task.getChecked());
         taskViewHolder.task = task;
+
+        taskViewHolder.checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                task.setChecked(isChecked);
+                MissionStore.getInstance().updateTask(mission, task);
+            }
+        });
 
         taskViewHolder.handle.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -117,13 +128,15 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.TaskVi
         TextView titleTextView;
         TextView descriptionTextView;
         ImageView handle;
+        CheckBox checkBox;
         Task task;
 
         public TaskViewHolder(final View v) {
             super(v);
             this.titleTextView = v.findViewById(R.id.task_item_title);
             this.descriptionTextView = v.findViewById(R.id.task_item_description);
-            handle = v.findViewById(R.id.handle);
+            this.checkBox = v.findViewById(R.id.checkBox);
+            this.handle = v.findViewById(R.id.handle);
         }
     }
 }

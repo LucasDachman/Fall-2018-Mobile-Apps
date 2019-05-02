@@ -63,15 +63,6 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <Spinner
-                android:id="@+id/new_task_label_spinner"
-                style="@style/Theme.Mission.spinner_style"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="24dp"
-                android:layout_marginEnd="24dp" />
-
-            <Spinner
                 android:id="@+id/new_task_mission_spinner"
                 style="@style/Theme.Mission.spinner_style"
                 android:layout_width="match_parent"

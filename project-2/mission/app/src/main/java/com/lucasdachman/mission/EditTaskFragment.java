@@ -27,7 +27,6 @@ public class EditTaskFragment extends DialogFragment implements View.OnClickList
     public static final String TAG = "EditTaskFragment";
 
     // UI Elements
-    Spinner labelSpinner;
     Spinner missionSpinner;
     TextInputEditText titleEditText;
     TextInputEditText descriptionEditText;
@@ -57,13 +56,6 @@ public class EditTaskFragment extends DialogFragment implements View.OnClickList
         toolbar.setNavigationIcon(R.drawable.ic_baseline_close_24px);
         toolbar.setOnMenuItemClickListener(this);
         toolbar.inflateMenu(R.menu.menu_new_task);
-
-        labelSpinner = view.findViewById(R.id.new_task_label_spinner);
-        ArrayAdapter labelSpinnerAdapter = new ArrayAdapter(view.getContext(), R.layout.support_simple_spinner_dropdown_item);
-        labelSpinnerAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
-        labelSpinnerAdapter.add("Label 1");
-        labelSpinnerAdapter.add("Label 2");
-        labelSpinner.setAdapter(labelSpinnerAdapter);
 
         missionSpinner = view.findViewById(R.id.new_task_mission_spinner);
         ArrayAdapter missionSpinnerAdapter = new ArrayAdapter(view.getContext(), R.layout.support_simple_spinner_dropdown_item, MissionStore.getInstance().getMissions());

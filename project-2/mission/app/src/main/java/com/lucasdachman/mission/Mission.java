@@ -2,6 +2,8 @@ package com.lucasdachman.mission;
 
 import androidx.annotation.NonNull;
 
+import com.google.firebase.database.Exclude;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -28,6 +30,7 @@ class Mission extends Orderable implements Serializable {
         tasks.put(key, task);
     }
 
+    @Exclude
     public ArrayList<Task> getTasksAsList() {
         ArrayList<Task> sorted = new ArrayList<>(tasks.values());
         Collections.sort(sorted);

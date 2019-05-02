@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity implements MissionDataChange
         // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
-        MissionStore.getInstance().setMissionDataChangeListener(this);
+        MissionStore.getInstance().addMissionDataChangeListener(this);
 
         TabLayout tabLayout = findViewById(R.id.tabLayout);
         tabLayout.setupWithViewPager(mViewPager, true);
@@ -54,6 +54,7 @@ public class MainActivity extends AppCompatActivity implements MissionDataChange
                 EditTaskFragment editTaskFragment = EditTaskFragment.newInstance(currentMission);
                 FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
                 editTaskFragment.show(ft, EditTaskFragment.TAG);
+                ft.commitNow();
             }
         });
 
@@ -64,16 +65,6 @@ public class MainActivity extends AppCompatActivity implements MissionDataChange
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.main_action_manage_missions) {
-            // TODO: Start managae missions activity
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
     }
 
     // Interface method for MissionDataChanged
@@ -87,8 +78,7 @@ public class MainActivity extends AppCompatActivity implements MissionDataChange
     @Override
     public boolean onMenuItemClick(MenuItem item) {
         ManageMissionsViewFragment manageMissionsViewFragment = new ManageMissionsViewFragment();
-        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        manageMissionsViewFragment.show(ft, TAG);
+        manageMissionsViewFragment.show(getSupportFragmentManager(), TAG);
         return true;
     }
 }

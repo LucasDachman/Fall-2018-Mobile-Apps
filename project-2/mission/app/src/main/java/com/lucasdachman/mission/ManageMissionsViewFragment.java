@@ -19,7 +19,9 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
  * A fragment representing a list of Items.
  */
 
-public class ManageMissionsViewFragment extends DialogFragment implements View.OnClickListener {
+public class ManageMissionsViewFragment extends DialogFragment implements View.OnClickListener, MissionDataChangeListener {
+
+    private ManageMissionsRecyclerViewAdapter adapter;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -33,6 +35,8 @@ public class ManageMissionsViewFragment extends DialogFragment implements View.O
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setStyle(androidx.fragment.app.DialogFragment.STYLE_NORMAL, R.style.Theme_Mission_FullScreenDialogStyle);
+        adapter = new ManageMissionsRecyclerViewAdapter(getChildFragmentManager(), MissionStore.getInstance().getMissions());
+//        MissionStore.getInstance().addMissionDataChangeListener(this);
     }
 
     @Override
@@ -44,7 +48,7 @@ public class ManageMissionsViewFragment extends DialogFragment implements View.O
         Context context = view.getContext();
         RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.manage_missions_list);
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
-        recyclerView.setAdapter(new ManageMissionsRecyclerViewAdapter(MissionStore.getInstance().getMissions()));
+        recyclerView.setAdapter(adapter);
 
         Toolbar toolbar = view.findViewById(R.id.manage_missions_toolbar);
         toolbar.setNavigationIcon(R.drawable.ic_baseline_close_24px);
@@ -77,5 +81,11 @@ public class ManageMissionsViewFragment extends DialogFragment implements View.O
     @Override
     public void onClick(View v) {
         dismiss();
+    }
+
+    /* MissionDataChangeListener */
+    @Override
+    public void onDataChange() {
+       adapter.notifyDataSetChanged();
     }
 }

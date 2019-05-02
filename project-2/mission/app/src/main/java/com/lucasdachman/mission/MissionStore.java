@@ -22,13 +22,14 @@ public class MissionStore implements ValueEventListener {
 
     // instance members
     private ArrayList<Mission> missions = new ArrayList<Mission>();
-    private MissionDataChangeListener missionDataChangeListener;
+    private ArrayList<MissionDataChangeListener> missionDataChangeListeners;
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference missionsListRef = database.getReference("missions");
 
     private MissionStore() {
-        Log.i(TAG, "New MissionStore created");
+        missionDataChangeListeners = new ArrayList<>();
         missionsListRef.orderByChild("order").addValueEventListener(this);
+        Log.i(TAG, "New MissionStore created");
     }
 
     public void addMission(Mission mission) {
@@ -53,6 +54,13 @@ public class MissionStore implements ValueEventListener {
 
     public Mission getMissionAt(int index) {
         return missions.get(index);
+    }
+
+    public void updateMission(Mission mission) {
+        Log.i(TAG, "Updating mission: " + mission.getName());
+
+        String missionKey = mission.getKey();
+        missionsListRef.child(missionKey).setValue(mission);
     }
 
     public void addTask(Mission mission, Task task) {
@@ -87,15 +95,17 @@ public class MissionStore implements ValueEventListener {
         missionsListRef.child(missionKey).child("tasks").child(taskKey).setValue(task);
     }
 
-    public void setMissionDataChangeListener(MissionDataChangeListener missionDataChangeListener) {
-        this.missionDataChangeListener = missionDataChangeListener;
+    public void addMissionDataChangeListener(MissionDataChangeListener missionDataChangeListener) {
+        this.missionDataChangeListeners.add(missionDataChangeListener);
         onDataChanged();
     }
 
     // invoke interface method onChange
     private void onDataChanged() {
-        if (missionDataChangeListener != null) {
-            missionDataChangeListener.onDataChange();
+        if (!missionDataChangeListeners.isEmpty()) {
+            for (MissionDataChangeListener l : missionDataChangeListeners) {
+                l.onDataChange();
+            }
         }
     }
 

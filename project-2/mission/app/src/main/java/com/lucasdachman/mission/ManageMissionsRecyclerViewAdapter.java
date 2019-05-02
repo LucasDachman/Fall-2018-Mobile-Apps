@@ -1,5 +1,7 @@
 package com.lucasdachman.mission;
 
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
@@ -12,9 +14,12 @@ import java.util.List;
 public class ManageMissionsRecyclerViewAdapter extends RecyclerView.Adapter<ManageMissionsRecyclerViewAdapter.ViewHolder> {
 
     private final List<Mission> missionList;
+    private final FragmentManager fragmentManager;
+    private final String TAG = "ManageMissionsRecyclerViewAdapter";
 
-    public ManageMissionsRecyclerViewAdapter(List<Mission> items) {
-        missionList = items;
+    public ManageMissionsRecyclerViewAdapter(FragmentManager fm, List<Mission> missions) {
+        missionList = missions;
+        this.fragmentManager = fm;
     }
 
     @Override
@@ -27,13 +32,15 @@ public class ManageMissionsRecyclerViewAdapter extends RecyclerView.Adapter<Mana
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.mission = missionList.get(position);
-        holder.titleView.setText(missionList.get(position).getName());
+        final String name = missionList.get(position).getName();
+        holder.titleView.setText(name);
         holder.numberView.setText(String.valueOf(position + 1));
 
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // TODO: edit mission
+                EditMissionFragment editMissionFragment = EditMissionFragment.newInstance(holder.mission);
+                editMissionFragment.show(fragmentManager, TAG);
             }
         });
     }

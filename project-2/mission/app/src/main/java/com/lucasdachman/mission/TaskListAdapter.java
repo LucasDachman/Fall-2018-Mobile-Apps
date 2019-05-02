@@ -56,8 +56,7 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.TaskVi
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
                         EditTaskFragment frag = EditTaskFragment.newEditInstance(mission, task);
-                        FragmentTransaction ft = fragmentManager.beginTransaction();
-                        frag.show(ft, TAG);
+                        frag.show(fragmentManager, TAG);
                         return false;
                     }
                 });
@@ -68,8 +67,7 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.TaskVi
             @Override
             public void onClick(View v) {
                 EditTaskFragment frag = EditTaskFragment.newEditInstance(mission, task);
-                FragmentTransaction ft = fragmentManager.beginTransaction();
-                frag.show(ft, TAG);
+                frag.show(fragmentManager, TAG);
             }
         });
     }

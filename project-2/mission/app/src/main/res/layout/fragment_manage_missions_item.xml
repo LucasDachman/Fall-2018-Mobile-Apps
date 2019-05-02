@@ -1,29 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:clipToPadding="false"
-    android:orientation="horizontal"
     android:padding="15dp"
+    android:clipToPadding="false"
     android:theme="@style/Theme.Mission">
 
     <TextView
         android:id="@+id/mission_item_number"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
         android:background="@drawable/item_number_bg"
-        android:includeFontPadding="true"
-        android:text="1"
         android:gravity="center_vertical"
-        android:textColor="@color/colorPrimaryDark"
+        android:includeFontPadding="true"
+        android:text=""
+        android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
-        android:textAlignment="center" />
+        android:textColor="@color/colorPrimaryDark"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ImageView
+        android:id="@+id/handle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right|center_vertical"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:src="@drawable/ic_baseline_drag_handle_24px"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/mission_item_title"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/mission_item_title"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
         android:gravity="center_vertical"
-        android:textAppearance="@style/Theme.Mission.MissionItemText" />
-</LinearLayout>
+        android:textAppearance="@style/Theme.Mission.MissionItemText"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/handle"
+        app:layout_constraintStart_toEndOf="@+id/mission_item_number"
+        app:layout_constraintTop_toTopOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

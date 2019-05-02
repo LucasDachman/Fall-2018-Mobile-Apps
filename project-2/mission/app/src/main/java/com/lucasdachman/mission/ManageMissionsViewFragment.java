@@ -5,6 +5,7 @@ import android.content.Context;
 import android.os.Bundle;
 
 import androidx.fragment.app.DialogFragment;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -19,10 +20,11 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
  * A fragment representing a list of Items.
  */
 
-public class ManageMissionsViewFragment extends DialogFragment implements View.OnClickListener, MissionDataChangeListener {
+public class ManageMissionsViewFragment extends DialogFragment implements View.OnClickListener, MissionDataChangeListener, SimpleItemTouchHelperCallback.OnStartDragListener {
 
     private static final String TAG = "ManageMissionsViewFragment";
     private ManageMissionsRecyclerViewAdapter adapter;
+    private ItemTouchHelper itemTouchHelper;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -36,7 +38,7 @@ public class ManageMissionsViewFragment extends DialogFragment implements View.O
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setStyle(androidx.fragment.app.DialogFragment.STYLE_NORMAL, R.style.Theme_Mission_FullScreenDialogStyle);
-        adapter = new ManageMissionsRecyclerViewAdapter(getChildFragmentManager(), MissionStore.getInstance().getMissions());
+        adapter = new ManageMissionsRecyclerViewAdapter(getChildFragmentManager(), MissionStore.getInstance().getMissions(), this);
 //        MissionStore.getInstance().addMissionDataChangeListener(this);
     }
 
@@ -51,6 +53,10 @@ public class ManageMissionsViewFragment extends DialogFragment implements View.O
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
         recyclerView.setAdapter(adapter);
 
+        ItemTouchHelper.Callback callback = new SimpleItemTouchHelperCallback(adapter);
+        itemTouchHelper = new ItemTouchHelper(callback);
+        itemTouchHelper.attachToRecyclerView(recyclerView);
+
         Toolbar toolbar = view.findViewById(R.id.manage_missions_toolbar);
         toolbar.setNavigationIcon(R.drawable.ic_baseline_close_24px);
         toolbar.setNavigationOnClickListener(this);
@@ -60,7 +66,6 @@ public class ManageMissionsViewFragment extends DialogFragment implements View.O
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // TODO: edit mission dialog
                 new EditMissionFragment().show(getChildFragmentManager(), TAG);
             }
         });
@@ -89,5 +94,10 @@ public class ManageMissionsViewFragment extends DialogFragment implements View.O
     @Override
     public void onDataChange() {
        adapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void onStartDrag(RecyclerView.ViewHolder viewHolder) {
+        itemTouchHelper.startDrag(viewHolder);
     }
 }

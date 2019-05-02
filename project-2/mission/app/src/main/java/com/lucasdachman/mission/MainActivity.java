@@ -52,9 +52,7 @@ public class MainActivity extends AppCompatActivity implements MissionDataChange
             public void onClick(View view) {
                 Mission currentMission = MissionStore.getInstance().getMissions().get(mViewPager.getCurrentItem());
                 EditTaskFragment editTaskFragment = EditTaskFragment.newInstance(currentMission);
-                FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-                editTaskFragment.show(ft, EditTaskFragment.TAG);
-                ft.commitNow();
+                editTaskFragment.show(getSupportFragmentManager(), EditTaskFragment.TAG);
             }
         });
 

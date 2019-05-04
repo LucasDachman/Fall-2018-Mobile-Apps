@@ -20,7 +20,8 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    ArrayList<Restaurant> restaurants;
+    private static final String TAG = "MainActivity";
+    ArrayList<Restaurant> restaurants = RestaurantStore.getInstance().restaurants;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,21 +30,20 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        restaurants = new ArrayList<>();
-        restaurants.add(new Restaurant("Avery Brewing", "https://www.google.com"));
-        restaurants.add(new Restaurant("The Buff", "https://www.google.com"));
 
         RecyclerView recyclerView = findViewById(R.id.recycler_view);
         recyclerView.addItemDecoration(new DividerItemDecoration(recyclerView.getContext(), DividerItemDecoration.VERTICAL));
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-        recyclerView.setAdapter(new Adapter(restaurants));
+        final Adapter adapter = new Adapter(restaurants);
+        recyclerView.setAdapter(adapter);
 
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                EditRestaurantDialogFragment frag = new EditRestaurantDialogFragment();
+                frag.setOnDataChangedListener(adapter);
+                frag.show(getSupportFragmentManager(), TAG);
             }
         });
     }

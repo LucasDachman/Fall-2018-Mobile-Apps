@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
+public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> implements EditRestaurantDialogFragment.OnDataChangedListener {
     private ArrayList<Restaurant> items;
 
     public Adapter(ArrayList<Restaurant> items) {
@@ -32,6 +32,11 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
     @Override
     public int getItemCount() {
         return items.size();
+    }
+
+    @Override
+    public void onDataChanged() {
+        notifyDataSetChanged();
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {

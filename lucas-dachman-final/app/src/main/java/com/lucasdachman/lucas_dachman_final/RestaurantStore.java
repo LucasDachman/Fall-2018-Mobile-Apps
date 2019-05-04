@@ -1,5 +1,19 @@
 package com.lucasdachman.lucas_dachman_final;
 
+import android.util.Log;
+import android.view.View;
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 
 public class RestaurantStore {
@@ -17,9 +31,6 @@ public class RestaurantStore {
 
     public RestaurantStore() {
         restaurants = new ArrayList<>();
-        restaurants.add(new Restaurant("Avery Brewing", "https://www.google.com"));
-        restaurants.add(new Restaurant("The Buff", "https://www.google.com"));
     }
-
 }
 

@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,11 +16,14 @@ import android.widget.EditText;
 
 
 public class EditRestaurantDialogFragment extends DialogFragment {
+    private static final String TAG = "EditRestaurantDialog";
     private static final String ARG_NAME = "param1";
     private static final String ARG_URL = "param2";
+    private static final String ARG_IDX = "param3";
 
     private String name;
     private String url;
+    private int idx;
 
     private EditText nameEditText;
     private EditText urlEditText;
@@ -29,11 +33,12 @@ public class EditRestaurantDialogFragment extends DialogFragment {
         // Required empty public constructor
     }
 
-    public static EditRestaurantDialogFragment newInstance(String name, String url) {
+    public static EditRestaurantDialogFragment newInstance(String name, String url, int idx) {
         EditRestaurantDialogFragment fragment = new EditRestaurantDialogFragment();
         Bundle args = new Bundle();
         args.putString(ARG_NAME, name);
         args.putString(ARG_URL, url);
+        args.putInt(ARG_IDX, idx);
         fragment.setArguments(args);
         return fragment;
     }
@@ -44,9 +49,11 @@ public class EditRestaurantDialogFragment extends DialogFragment {
         if (getArguments() != null) {
             name = getArguments().getString(ARG_NAME);
             url = getArguments().getString(ARG_URL);
+            idx = getArguments().getInt(ARG_IDX);
         } else {
             name = "";
             url = "";
+            idx = -1;
         }
     }
 
@@ -69,12 +76,31 @@ public class EditRestaurantDialogFragment extends DialogFragment {
         view.findViewById(R.id.done_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                addRestaurant();
+                if (idx == -1) {
+                    addRestaurant();
+                } else {
+                    updateRestaurant();
+                }
                 dismiss();
             }
         });
 
         return view;
+    }
+
+    private void updateRestaurant() {
+        Editable newName = nameEditText.getText();
+        Editable newUrl = urlEditText.getText();
+        if (newName == null || newUrl == null) {
+            return;
+        }
+        if (newName.toString().isEmpty() || newUrl.toString().isEmpty()) {
+            return;
+        }
+        Log.i(TAG, "Updating Restaurant");
+        Restaurant newRestaurant = new Restaurant(newName.toString(), newUrl.toString());
+        RestaurantStore.getInstance().restaurants.set(idx, newRestaurant);
+        onDataChanged();
     }
 
     private void addRestaurant() {
@@ -86,13 +112,16 @@ public class EditRestaurantDialogFragment extends DialogFragment {
         if (newName.toString().isEmpty() || newUrl.toString().isEmpty()) {
             return;
         }
+        Log.i(TAG, "Updating Restaurant");
         Restaurant newRestaurant = new Restaurant(newName.toString(), newUrl.toString());
         RestaurantStore.getInstance().restaurants.add(newRestaurant);
         onDataChanged();
     }
 
     private void onDataChanged() {
+        Log.i(TAG, "Attempting to invoke change listener");
         if (onDataChangedListener != null) {
+            Log.i(TAG, "Found a changeListener, calling interface method");
             onDataChangedListener.onDataChanged();
         }
     }
@@ -102,7 +131,7 @@ public class EditRestaurantDialogFragment extends DialogFragment {
         super.onStart();
         Dialog dialog = getDialog();
         if (dialog != null) {
-            if (name == null) {
+            if (idx == -1) {
                 dialog.setTitle("New Restaurant");
             } else {
                 dialog.setTitle("Edit Restaurant");
